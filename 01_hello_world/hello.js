@@ -1,11 +1,11 @@
 const { createApp, ref } = Vue;
 
+const mountPointId = "vue-app-hello"; // for document rendering
+
 const app = createApp({
   setup() {
-    const mountPointId = "vue-app-hello";
     const msg = ref("Hello World");
     return {
-      mountPointId,
       msg,
     };
   },
@@ -15,4 +15,4 @@ const app = createApp({
   `,
 });
 
-app.mount("#vue-app-hello");
+app.mount(`#${mountPointId}`);

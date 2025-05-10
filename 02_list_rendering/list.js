@@ -1,7 +1,6 @@
-import {
-  createApp,
-  ref,
-} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+const { createApp, ref } = Vue;
+
+const mountPointId = "vue-app-list"; // for document rendering
 
 const app = createApp({
   setup() {
@@ -35,10 +34,10 @@ const app = createApp({
   },
   template: `
     <h1>{{ header }}</h1>
-    <ul>
+    <ul class="styled-item-list">
       <li v-for="item in items" :key="item.id">{{ item.name }}</li>
     </ul>
   `,
 });
 
-app.mount("#app");
+app.mount(`#${mountPointId}`);

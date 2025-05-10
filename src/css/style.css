@@ -111,6 +111,26 @@ body.toc-open #toc-overlay {
 .markdown-content ol { list-style-type: decimal; }
 .markdown-content li { margin-bottom: 0.35em; }
 
+.markdown-content a {
+    color: #2563eb; /* Tailwind blue-600 */
+    text-decoration: underline;
+    text-decoration-color: #93c5fd; /* Tailwind blue-300 for a lighter underline */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px; /* Space between text and underline */
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.markdown-content a:hover,
+.markdown-content a:focus {
+    color: #1d4ed8; /* Tailwind blue-700 */
+    text-decoration-color: #3b82f6; /* Tailwind blue-500 for a stronger underline on hover/focus */
+    outline: none; /* Remove default focus outline if you prefer, or style it */
+}
+
+.markdown-content a:visited {
+    color: #5b21b6; /* Example: Tailwind violet-700 for visited links */
+    text-decoration-color: #a78bfa; /* Lighter violet underline */
+}
+
 /* Styles for Vue interactive solution sections (overall block) */
 .vue-interactive-solution {
     margin-top: 1.75rem;
@@ -226,7 +246,7 @@ body.toc-open #toc-overlay {
 .styled-item-list li { padding: 0.75rem 1.25rem; color: #374151; border-bottom: 1px solid #e5e7eb; background-color: #fff; transition: background-color 0.2s ease; }
 .styled-item-list li:last-child { border-bottom: none; }
 .styled-item-list li:hover { background-color: #f3f4f6; }
-.styled-item-list li strong { color: #111827; }
+.styled-item-list li strong { color: #011748; }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

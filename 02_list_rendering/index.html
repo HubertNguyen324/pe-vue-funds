@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue.js 3 Composition API - HELLO WORLD!</title>
+    <title>Vue.js 3 Fundamentals with the Composition API</title>
+
+    <link rel="stylesheet" href="../src/css/style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
-<body>    
-    <div id="app"></div>
-    <script src="list.js" type="module"></script>
+<body class="font-inter">
+    <button id="toc-toggle-button" aria-label="Toggle Table of Contents" aria-expanded="false">
+        ☰ TOC
+    </button>
+
+    <aside id="toc-sidebar">
+        <nav id="toc-nav">
+            <h2 class="toc-title">Table of Contents</h2>
+            <ul id="toc-list">
+                <li class="toc-placeholder">Generating TOC...</li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div id="toc-overlay"></div>
+
+
+    <div class="main-content-wrapper"> <div class="main-content-container">
+            <header class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800">Vue.js 3 Fundamentals</h1>
+                <p class="text-gray-600">Progressive Enhancement with the Composition API</p>
+            </header>
+
+            <main id="training-content-area" class="markdown-content" data-markdown-source="readme.md">
+                <div class="loading-placeholder p-6 text-center text-gray-500">
+                    <p>Loading content...</p>
+                </div>
+                <noscript>
+                    <div class="noscript-message bg-yellow-100 border border-yellow-300 text-yellow-700 p-4 rounded-md">
+                        <p>Please enable JavaScript to view the interactive training. You can also try viewing the <a href="readme.md" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800">raw Markdown content directly</a>, but interactive elements will not function.</p>
+                        <a id="noscript-md-link" href="readme.md" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800">raw Markdown content directly</a>,
+
+                    </div>
+                </noscript>
+            </main>
+        </div>
+    </div>
+
+
+    <noscript>
+        <div class="noscript-message bg-yellow-100 border border-yellow-300 text-yellow-700 p-4 rounded-md mt-8 text-center fixed bottom-0 w-full">
+            <strong>Note:</strong> This page uses JavaScript for dynamic content loading and enhanced interactivity. Some features may not be available without JavaScript enabled.
+        </div>
+    </noscript>
+
+    <script src="../src/js/main.js"></script>
+
 </body>
 </html>
