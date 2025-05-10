@@ -1,6 +1,6 @@
 /* General body and layout styles */
 html {
-    scroll-behavior: smooth; /* For smooth scrolling when clicking TOC links */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     top: 1rem;
     left: 1rem;
     z-index: 1001;
-    background-color: #3b82f6; /* Tailwind blue-500 */
+    background-color: #3b82f6;
     color: white;
     border: none;
     padding: 0.6rem 1rem;
@@ -31,7 +31,7 @@ body {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 #toc-toggle-button:hover {
-    background-color: #2563eb; /* Tailwind blue-600 */
+    background-color: #2563eb;
     transform: translateY(-1px);
 }
 
@@ -75,14 +75,7 @@ body.toc-open #toc-overlay {
     z-index: 1001;
 }
 
-#toc-nav .toc-title {
-    font-size: 1.35em;
-    font-weight: bold;
-    color: #1e293b;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 2px solid #3b82f6;
-}
+#toc-nav .toc-title { font-size: 1.35em; font-weight: bold; color: #1e293b; margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 2px solid #3b82f6; }
 #toc-list { list-style: none; padding: 0; margin: 0; }
 #toc-list li a { display: block; padding: 0.5rem 0.75rem; color: #374151; text-decoration: none; border-radius: 5px; transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease; font-size: 0.95em; border-left: 3px solid transparent; }
 #toc-list li a:hover { background-color: #eef2ff; color: #3b82f6; padding-left: 1rem; }
@@ -96,27 +89,8 @@ body.toc-open #toc-overlay {
 .toc-placeholder { color: #6b7280; padding: 0.5rem; font-style: italic; }
 
 /* Main Content Wrapper */
-.main-content-wrapper {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-    padding-left: 4.5rem; /* Space for the fixed toggle button */
-    transition: margin-left 0.3s ease-in-out;
-}
-body.toc-open .main-content-wrapper {
-    /* Optional: push content when TOC is open if not overlaying fully */
-    /* margin-left: calc(280px + 1rem); */
-}
-
-.main-content-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Header styles (within main content) */
+.main-content-wrapper { max-width: 900px; margin-left: auto; margin-right: auto; padding: 1rem; padding-left: 4.5rem; transition: margin-left 0.3s ease-in-out; }
+.main-content-container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
 .main-content-container header.text-center { text-align: center; margin-bottom: 2rem; }
 .main-content-container header h1.text-4xl { font-size: 2.25rem; font-weight: bold; color: #1a202c; }
 .main-content-container header p.text-gray-600 { color: #4a5568; }
@@ -137,9 +111,80 @@ body.toc-open .main-content-wrapper {
 .markdown-content ol { list-style-type: decimal; }
 .markdown-content li { margin-bottom: 0.35em; }
 
-/* Styles for Vue interactive solution sections */
-.vue-interactive-solution { margin-top: 1.75rem; margin-bottom: 1.75rem; padding: 1.75rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #f9fafb; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-.vue-interactive-solution h3 { margin-top: 0; margin-bottom: 1em; font-size: 1.2em; color: #1e293b; }
+/* Styles for Vue interactive solution sections (overall block) */
+.vue-interactive-solution {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+    border: 1px solid #d1d5db; /* Tailwind gray-300 */
+    border-radius: 8px;
+    background-color: #f9fafb; /* Tailwind gray-50 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 1.5rem; /* Padding for the outer box */
+}
+/* Title/Description within the interactive solution block (above tabs) */
+.vue-interactive-solution-header {
+    margin-bottom: 1rem;
+}
+.vue-interactive-solution-header h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    color: #1e293b; /* Tailwind slate-800 */
+}
+.vue-interactive-solution-header p {
+    margin-bottom: 0;
+    font-size: 0.95em;
+    color: #4b5563; /* Tailwind gray-600 */
+}
+
+
+/* --- TAB STYLES for Solution Blocks --- */
+.solution-tabs {
+    margin-top: 1rem; /* Space below the block header */
+}
+.tab-navigation {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb; /* Tailwind gray-200 */
+    margin-bottom: 1rem;
+}
+.tab-button {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-weight: 500;
+    color: #6b7280; /* Tailwind gray-500 */
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; /* Align with bottom border of navigation */
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tab-button:hover {
+    color: #3b82f6; /* Tailwind blue-500 */
+}
+.tab-button.active {
+    color: #3b82f6; /* Tailwind blue-500 */
+    border-bottom-color: #3b82f6;
+    font-weight: 600;
+}
+
+.tab-content-area .tab-pane {
+    display: none; /* Hide inactive panes */
+    padding: 0.5rem 0; /* Padding for content within a pane */
+}
+.tab-content-area .tab-pane.active {
+    display: block; /* Show active pane */
+}
+
+/* Styling for the source code view */
+.tab-pane-source pre {
+    margin-top: 0; /* Reset margin if it's the direct child */
+    max-height: 400px; /* Limit height and make it scrollable */
+    overflow-y: auto;
+}
+
+
+/* Original .solution-container and .toggle-button for Vue apps */
 .solution-container { margin-top: 0.75em; }
 .toggle-button { background-color: #3b82f6; color: white; padding: 0.65em 1.3em; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em; margin-bottom: 0.75em; transition: background-color 0.2s ease-in-out, transform 0.1s ease; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
 .toggle-button:hover { background-color: #2563eb; transform: translateY(-1px); }
@@ -153,220 +198,39 @@ body.toc-open .main-content-wrapper {
 
 .font-inter { font-family: "Inter", sans-serif; }
 
-
-/* --- NEW UI COMPONENT STYLES --- */
-
-/* Form Group for spacing */
-.form-group {
-    margin-bottom: 1.25rem;
-}
-.form-group label {
-    display: block;
-    font-weight: 500; /* Medium weight */
-    color: #374151; /* Tailwind gray-700 */
-    margin-bottom: 0.5rem;
-    font-size: 0.9em;
-}
-
-/* Text Input and Textarea */
-.form-input,
-.form-textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1em;
-    color: #1f2937; /* Tailwind gray-800 */
-    background-color: #f9fafb; /* Tailwind gray-50 */
-    border: 1px solid #d1d5db; /* Tailwind gray-300 */
-    border-radius: 6px;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.form-input:focus,
-.form-textarea:focus {
-    outline: none;
-    border-color: #3b82f6; /* Tailwind blue-500 */
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Focus ring */
-    background-color: #fff;
-}
-.form-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-/* Checkbox and Radio Button Wrapper */
-.form-check,
-.form-radio {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    position: relative; /* For custom styling */
-}
-.form-check-input,
-.form-radio-input {
-    appearance: none; /* Hide default browser appearance */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    height: 1.25em;
-    width: 1.25em;
-    min-width: 1.25em; /* Ensure it doesn't shrink */
-    border: 1px solid #9ca3af; /* Tailwind gray-400 */
-    background-color: #fff;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    cursor: pointer;
-    margin-right: 0.6rem;
-    position: relative; /* For checkmark/dot */
-    outline: none; /* Remove default outline */
-}
-.form-check-input {
-    border-radius: 4px; /* Slightly rounded for checkbox */
-}
-.form-radio-input {
-    border-radius: 50%; /* Circular for radio */
-}
-
-/* Custom Checkmark/Dot */
-.form-check-input:checked::before,
-.form-radio-input:checked::before {
-    content: "";
-    display: block;
-    position: absolute;
-    background-color: #3b82f6; /* Tailwind blue-500 */
-}
-.form-check-input:checked::before { /* Checkmark */
-    width: 0.35em;
-    height: 0.7em;
-    border: solid white;
-    border-width: 0 0.18em 0.18em 0;
-    transform: rotate(45deg) translate(0.2em, -0.15em); /* Position checkmark */
-    top: 0.05em; /* Fine-tune position */
-    left: 0.3em;
-}
-.form-radio-input:checked::before { /* Dot */
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Checked state styling */
-.form-check-input:checked,
-.form-radio-input:checked {
-    background-color: #3b82f6; /* Tailwind blue-500 */
-    border-color: #3b82f6;
-}
-.form-check-input:focus, /* Focus state for custom checkbox/radio */
-.form-radio-input:focus {
-     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
-
-.form-check-label,
-.form-radio-label {
-    color: #374151; /* Tailwind gray-700 */
-    font-size: 0.95em;
-    cursor: pointer;
-    user-select: none; /* Prevent text selection on label click */
-}
-
-/* Select Dropdown (Combo Box) */
-.form-select {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 2.5rem 0.75rem 1rem; /* Space for arrow */
-    font-size: 1em;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #1f2937;
-    background-color: #f9fafb;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); /* Tailwind gray-500 for arrow */
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em 1em;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    appearance: none; /* Hide default browser arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.form-select:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    background-color: #fff;
-}
-
-/* Generic Button Style */
-.form-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 1em;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #3b82f6; /* Tailwind blue-500 */
-    border: 1px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-.form-button:hover {
-    background-color: #2563eb; /* Tailwind blue-600 */
-    transform: translateY(-1px);
-}
-.form-button:active {
-    transform: translateY(0px);
-}
-.form-button:disabled {
-    background-color: #9ca3af; /* Tailwind gray-400 */
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-/* Secondary button style */
-.form-button-secondary {
-    background-color: #6b7280; /* Tailwind gray-500 */
-    color: white;
-}
-.form-button-secondary:hover {
-    background-color: #4b5563; /* Tailwind gray-600 */
-}
-
-
-/* Styled Item List */
-.styled-item-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
-    border: 1px solid #e5e7eb; /* Tailwind gray-200 */
-    border-radius: 6px;
-    overflow: hidden; /* To ensure border-radius clips children */
-}
-.styled-item-list li {
-    padding: 0.75rem 1.25rem;
-    color: #374151; /* Tailwind gray-700 */
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #fff;
-    transition: background-color 0.2s ease;
-}
-.styled-item-list li:last-child {
-    border-bottom: none;
-}
-.styled-item-list li:hover {
-    background-color: #f3f4f6; /* Tailwind gray-100 */
-}
-.styled-item-list li strong { /* For emphasizing part of a list item */
-    color: #111827; /* Tailwind gray-900 */
-}
-
+/* UI Component Styles */
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem; font-size: 0.9em; }
+.form-input, .form-textarea { width: 100%; padding: 0.75rem 1rem; font-size: 1em; color: #1f2937; background-color: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); background-color: #fff; }
+.form-textarea { min-height: 100px; resize: vertical; }
+.form-check, .form-radio { display: flex; align-items: center; margin-bottom: 0.5rem; position: relative; }
+.form-check-input, .form-radio-input { appearance: none; -webkit-appearance: none; -moz-appearance: none; height: 1.25em; width: 1.25em; min-width: 1.25em; border: 1px solid #9ca3af; background-color: #fff; transition: background-color 0.2s ease, border-color 0.2s ease; cursor: pointer; margin-right: 0.6rem; position: relative; outline: none; }
+.form-check-input { border-radius: 4px; }
+.form-radio-input { border-radius: 50%; }
+.form-check-input:checked::before, .form-radio-input:checked::before { content: ""; display: block; position: absolute; background-color: #3b82f6; }
+.form-check-input:checked::before { width: 0.35em; height: 0.7em; border: solid white; border-width: 0 0.18em 0.18em 0; transform: rotate(45deg) translate(0.2em, -0.15em); top: 0.05em; left: 0.3em; }
+.form-radio-input:checked::before { width: 0.65em; height: 0.65em; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.form-check-input:checked, .form-radio-input:checked { background-color: #3b82f6; border-color: #3b82f6; }
+.form-check-input:focus, .form-radio-input:focus { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
+.form-check-label, .form-radio-label { color: #374151; font-size: 0.95em; cursor: pointer; user-select: none; }
+.form-select { display: block; width: 100%; padding: 0.75rem 2.5rem 0.75rem 1rem; font-size: 1em; font-weight: 400; line-height: 1.5; color: #1f2937; background-color: #f9fafb; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em 1em; border: 1px solid #d1d5db; border-radius: 6px; appearance: none; -webkit-appearance: none; -moz-appearance: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-select:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); background-color: #fff; }
+.form-button { display: inline-block; padding: 0.75rem 1.5rem; font-size: 1em; font-weight: 500; text-align: center; text-decoration: none; color: #fff; background-color: #3b82f6; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.form-button:hover { background-color: #2563eb; transform: translateY(-1px); }
+.form-button:active { transform: translateY(0px); }
+.form-button:disabled { background-color: #9ca3af; cursor: not-allowed; opacity: 0.7; }
+.form-button-secondary { background-color: #6b7280; color: white; }
+.form-button-secondary:hover { background-color: #4b5563; }
+.styled-item-list { list-style: none; padding: 0; margin-bottom: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; }
+.styled-item-list li { padding: 0.75rem 1.25rem; color: #374151; border-bottom: 1px solid #e5e7eb; background-color: #fff; transition: background-color 0.2s ease; }
+.styled-item-list li:last-child { border-bottom: none; }
+.styled-item-list li:hover { background-color: #f3f4f6; }
+.styled-item-list li strong { color: #111827; }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    #toc-toggle-button { /* Ensure button is accessible */ }
-    .main-content-wrapper { padding-left: 1rem; padding-right: 1rem; } /* Adjust if toggle button takes space */
+    .main-content-wrapper { padding-left: 1rem; padding-right: 1rem; }
     .main-content-container { padding: 1.5rem; }
     #toc-sidebar { padding-top: 4.5rem; }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Training Document with Toggleable TOC</title>
+    <title>Interactive Training Document with UI Components</title>
 
     <link rel="stylesheet" href="../css/style.css">
 
@@ -18,7 +18,9 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </head>
-<body class="font-inter"> <button id="toc-toggle-button" aria-label="Toggle Table of Contents" aria-expanded="false">
+<body class="font-inter">
+
+    <button id="toc-toggle-button" aria-label="Toggle Table of Contents" aria-expanded="false">
         ☰ Menu
     </button>
 
@@ -55,9 +57,83 @@
                     </div>
                 </noscript>
             </main>
-        </div>
-    </div>
 
+            <section id="ui-component-demo" class="mt-12 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-700">UI Component Styles Demo</h2>
+
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="e.g., Ada Lovelace">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" class="form-select">
+                            <option value="">Select a country...</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <option value="gb">United Kingdom</option>
+                            <option value="vn">Vietnam</option>
+                            <option value="au">Australia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Contact Method</label>
+                        <div class="form-radio">
+                            <input type="radio" id="contact-email" name="contact_method" value="email" class="form-radio-input" checked>
+                            <label for="contact-email" class="form-radio-label">Email</label>
+                        </div>
+                        <div class="form-radio">
+                            <input type="radio" id="contact-phone" name="contact_method" value="phone" class="form-radio-input">
+                            <label for="contact-phone" class="form-radio-label">Phone</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interests</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="interest-coding" name="interests[]" value="coding" class="form-check-input">
+                            <label for="interest-coding" class="form-check-label">Coding & Development</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="interest-design" name="interests[]" value="design" class="form-check-input" checked>
+                            <label for="interest-design" class="form-check-label">Design & UX</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="interest-pm" name="interests[]" value="pm" class="form-check-input">
+                            <label for="interest-pm" class="form-check-label">Project Management</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments">Comments</label>
+                        <textarea id="comments" name="comments" class="form-textarea" rows="4" placeholder="Leave your comments here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Submit Form</button>
+                        <button type="button" class="form-button form-button-secondary ml-2">Cancel</button>
+                    </div>
+                </form>
+
+                <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700">Styled Item List Example</h3>
+                <ul class="styled-item-list">
+                    <li><strong>Item 1:</strong> Description for the first item.</li>
+                    <li><strong>Item 2:</strong> Some details about the second entry.</li>
+                    <li><strong>Item 3:</strong> Another interesting point.</li>
+                    <li><strong>Item 4:</strong> Final thoughts on this list.</li>
+                </ul>
+
+            </section>
+            </div>
+    </div>
 
     <noscript>
         <div class="noscript-message bg-yellow-100 border border-yellow-300 text-yellow-700 p-4 rounded-md mt-8 text-center fixed bottom-0 w-full">
