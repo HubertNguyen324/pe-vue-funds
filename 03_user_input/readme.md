@@ -1,4 +1,4 @@
-# List Rendering in Vue
+# User Inputs
 
 In almost all applications there is a need to iterate or loop through a list of items and render them on the page.
 

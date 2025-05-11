@@ -1,7 +1,6 @@
-import {
-  createApp,
-  ref,
-} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+const { createApp, ref } = Vue;
+
+const mountPointId = "vue-app-list"; // for document rendering
 
 const app = createApp({
   setup() {
@@ -42,19 +41,21 @@ const app = createApp({
   },
   template: `
     <h1>{{ header }}</h1>
-    <input v-model.trim="newItem" type="text" placeholder="Add a new item...">
-    Priority: 
-    <select v-model="newItemPriory">
-      <option value="low">Low</option>
-      <option value="medium">Medium</option>
-      <option value="high">High</option>
-    </select>
-    <label><input type="checkbox" v-model="newItemActive">Active</label>
-    <button @click="items.push({ id: items.length + 1, name: newItem })">Add Item</button>
-    <ul>
+    <div class="form-row">
+      <input class="form-input" v-model.trim="newItem" type="text" placeholder="Add a new item...">
+      <label>Priority</label> 
+      <select class="form-select" v-model="newItemPriory">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <label><input class="form-check-input" type="checkbox" v-model="newItemActive">Active</label>
+      <button class="form-button" @click="items.push({ id: items.length + 1, name: newItem })">Add Item</button>
+    </div>
+    <ul class="styled-item-list">
       <li v-for="item in items" :key="item.id">{{ item.name }}</li>
     </ul>
   `,
 });
 
-app.mount("#app");
+app.mount(`#${mountPointId}`);
