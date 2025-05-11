@@ -42,15 +42,25 @@ const app = createApp({
   template: `
     <h1>{{ header }}</h1>
     <div class="form-row">
-      <input class="form-input" v-model.trim="newItem" type="text" placeholder="Add a new item...">
-      <label>Priority</label> 
-      <select class="form-select" v-model="newItemPriory">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-      <label><input class="form-check-input" type="checkbox" v-model="newItemActive">Active</label>
-      <button class="form-button" @click="items.push({ id: items.length + 1, name: newItem })">Add Item</button>
+        <div class="form-group">
+          <label>Label</label>
+          <input class="form-input" v-model.trim="newItem" type="text" placeholder="Add a new item...">
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select class="form-select" v-model="newItemPriory">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-group">  
+          <label>Active</label>
+          <input class="form-check-input" type="checkbox" v-model="newItemActive">
+        </div>
+        <div class="form-group">
+          <button class="form-button" @click="items.push({ id: items.length + 1, name: newItem })">Add Item</button>
+        </div>
     </div>
     <ul class="styled-item-list">
       <li v-for="item in items" :key="item.id">{{ item.name }}</li>
