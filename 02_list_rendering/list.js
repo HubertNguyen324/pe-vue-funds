@@ -33,10 +33,12 @@ const app = createApp({
     };
   },
   template: `
-    <h1>{{ header }}</h1>
-    <ul class="styled-item-list">
-      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
-    </ul>
+    <div class="p-1">
+      <h3>{{ header }}</h3>
+      <ul class="styled-item-list">
+        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+      </ul>
+    </div>
   `,
 });
 

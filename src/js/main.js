@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const trainingContentArea = document.getElementById("training-content-area");
   const tocList = document.getElementById("toc-list");
-  const tocPlaceholder = document.querySelector("#toc-list .toc-placeholder");
+  const tocPlaceholderItem = document.querySelector(
+    "#toc-list .toc-placeholder-item"
+  );
   const tocToggleButton = document.getElementById("toc-toggle-button");
   const tocSidebar = document.getElementById("toc-sidebar");
   const tocOverlay = document.getElementById("toc-overlay");
@@ -16,14 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error(
       "Error: Essential elements for TOC, content, or toggle functionality not found."
     );
-    if (tocPlaceholder)
-      tocPlaceholder.textContent = "Error initializing page components.";
+    if (tocList.querySelector(".toc-placeholder-item")) {
+      tocList.querySelector(".toc-placeholder-item").textContent =
+        "Error initializing page components.";
+    }
     return;
   }
 
   const defaultMarkdownFilePath = "training-content.md";
   let markdownFilePath =
     trainingContentArea.dataset.markdownSource || defaultMarkdownFilePath;
+
   if (markdownFilePath && !markdownFilePath.toLowerCase().endsWith(".md")) {
     console.warn(
       `Invalid or missing markdown file extension for: "${markdownFilePath}". Using default: "${defaultMarkdownFilePath}".`
@@ -51,7 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Marked.js library is not loaded.");
     trainingContentArea.innerHTML =
       '<p class="text-red-600 text-center p-4">Error: Markdown parser failed to load.</p>';
-    if (tocPlaceholder) tocPlaceholder.textContent = "Content loading failed.";
+    if (tocList.querySelector(".toc-placeholder-item")) {
+      tocList.querySelector(".toc-placeholder-item").textContent =
+        "Content loading failed.";
+    }
     return;
   }
 
@@ -64,14 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
   tocOverlay.addEventListener("click", toggleTOC);
   tocList.addEventListener("click", (event) => {
     if (
-      event.target.tagName === "A" &&
+      event.target.closest("a") &&
       document.body.classList.contains("toc-open")
-    )
+    ) {
       toggleTOC();
+    }
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && document.body.classList.contains("toc-open"))
+    if (
+      event.key === "Escape" &&
+      document.body.classList.contains("toc-open")
+    ) {
       toggleTOC();
+    }
   });
 
   async function loadMarkdownAndInitialize(mdPath) {
@@ -80,6 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
       noscriptMdLink.href = mdPath;
       const filename = mdPath.substring(mdPath.lastIndexOf("/") + 1);
       noscriptMdLink.textContent = `raw ${filename} content directly`;
+      noscriptMdLink.className =
+        "font-medium text-amber-700 hover:text-amber-800 underline"; // Theme noscript link
     }
 
     try {
@@ -93,12 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
       trainingContentArea.innerHTML = htmlContent;
 
       generateTableOfContents();
-      initializeInteractiveSolutions(); // This will now build tabs
+      initializeInteractiveSolutions();
     } catch (error) {
       console.error(`Error loading or parsing markdown from ${mdPath}:`, error);
       trainingContentArea.innerHTML = `<p class="text-red-600 text-center p-4">Error loading training content. ${error.message}.</p>`;
-      if (tocPlaceholder)
-        tocPlaceholder.textContent = "Failed to load content for TOC.";
+      if (tocList.querySelector(".toc-placeholder-item")) {
+        tocList.querySelector(".toc-placeholder-item").textContent =
+          "Failed to load content for TOC.";
+      }
     }
   }
 
@@ -108,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     interactiveSolutionBlocks.forEach(async (block) => {
-      // Make this async to handle fetching source code
       const solutionId = block.dataset.solutionId;
       const vueAppScriptPath = block.dataset.vueAppScript;
       const vueAppMountPointId = `vue-app-${solutionId}`;
@@ -123,102 +139,164 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Preserve original header/description content from the block
-      const headerContent = document.createElement("div");
-      headerContent.classList.add("vue-interactive-solution-header");
-      // Move existing h3, p (etc.) into this headerContent div
+      const blockHeaderContent = document.createElement("div");
+      blockHeaderContent.className = "mb-4";
       Array.from(block.children).forEach((child) => {
         if (child.tagName === "H3" || child.tagName === "P") {
-          // Adjust if other elements are used for description
-          headerContent.appendChild(child.cloneNode(true));
+          const clonedChild = child.cloneNode(true);
+          if (clonedChild.tagName === "H3") {
+            clonedChild.className = "text-xl font-semibold text-stone-800"; // Theme H3
+          } else if (clonedChild.tagName === "P") {
+            clonedChild.className = "text-stone-600 text-sm"; // Theme P
+          }
+          blockHeaderContent.appendChild(clonedChild);
         }
       });
 
-      // Clear the original block content and rebuild with tabs
-      block.innerHTML = ""; // Clear original content
-      if (headerContent.hasChildNodes()) {
-        block.appendChild(headerContent); // Add back the preserved header
+      block.innerHTML = ""; // Clear original
+      block.className =
+        "vue-interactive-solution p-6 rounded-lg border border-stone-200 bg-stone-50 my-8 relative"; // Themed block, added relative for button positioning
+      if (blockHeaderContent.hasChildNodes()) {
+        block.appendChild(blockHeaderContent);
       }
 
-      // Create Tab Structure
       const tabsContainer = document.createElement("div");
-      tabsContainer.className = "solution-tabs";
-
       const tabNav = document.createElement("div");
-      tabNav.className = "tab-navigation";
+      tabNav.className = "flex border-b border-stone-300 mb-4"; // Themed border
 
       const demoButton = document.createElement("button");
-      demoButton.className = "tab-button active";
       demoButton.textContent = "Demo";
       demoButton.dataset.tabTarget = `demo-content-${solutionId}`;
 
       const sourceButton = document.createElement("button");
-      sourceButton.className = "tab-button";
-      sourceButton.textContent = "Source Code";
+      sourceButton.textContent = "Source";
       sourceButton.dataset.tabTarget = `source-content-${solutionId}`;
+
+      const baseTabButtonClasses = [
+        "py-2",
+        "px-4",
+        "font-medium",
+        "text-sm",
+        "focus:outline-none",
+        "transition-colors",
+        "duration-150",
+      ];
+      const activeTabClasses = ["text-sky-600", "border-sky-600", "border-b-2"];
+      const inactiveTabClasses = [
+        "text-stone-500",
+        "hover:text-sky-700",
+        "border-transparent",
+        "hover:border-stone-300",
+      ];
+
+      [demoButton, sourceButton].forEach((btn) =>
+        btn.classList.add(...baseTabButtonClasses)
+      );
+
+      function setActiveTab(buttonToActivate) {
+        [demoButton, sourceButton].forEach((btn) => {
+          btn.classList.remove(...activeTabClasses);
+          btn.classList.add(...inactiveTabClasses);
+        });
+        buttonToActivate.classList.add(...activeTabClasses);
+        buttonToActivate.classList.remove(...inactiveTabClasses);
+      }
+      setActiveTab(demoButton);
 
       tabNav.appendChild(demoButton);
       tabNav.appendChild(sourceButton);
 
       const tabContentArea = document.createElement("div");
-      tabContentArea.className = "tab-content-area";
-
-      // Demo Pane
       const demoPane = document.createElement("div");
       demoPane.id = `demo-content-${solutionId}`;
-      demoPane.className = "tab-pane active";
-      // The original .solution-container div from markdown needs to be created here for the Vue app
+      demoPane.className = "tab-pane";
       const solutionContainerDiv = document.createElement("div");
-      solutionContainerDiv.className = "solution-container"; // Class from original markdown structure
-      solutionContainerDiv.id = vueAppMountPointId; // Vue app mounts here
-      // Add noscript fallback to the demo pane as well
-      const noscriptDiv = document.createElement("noscript");
-      const noscriptSolutionContent = document.createElement("div");
-      noscriptSolutionContent.className =
-        "solution-content noscript-solution p-3 bg-gray-50 border rounded-md";
-      // Try to find original noscript content if it was defined in the markdown block
-      // This part is tricky as the original block content is cleared.
-      // For simplicity, a generic noscript message for the demo.
-      noscriptSolutionContent.innerHTML = `<p><strong>Note:</strong> This interactive demo requires JavaScript.</p>`;
-      noscriptDiv.appendChild(noscriptSolutionContent);
-      solutionContainerDiv.appendChild(noscriptDiv);
-
+      solutionContainerDiv.id = vueAppMountPointId;
       demoPane.appendChild(solutionContainerDiv);
 
-      // Source Pane
       const sourcePane = document.createElement("div");
       sourcePane.id = `source-content-${solutionId}`;
-      sourcePane.className = "tab-pane tab-pane-source";
+      sourcePane.className = "tab-pane hidden relative"; // Added relative for button positioning
+
+      const copySourceButton = document.createElement("button");
+      copySourceButton.textContent = "Copy Source";
+      // Tailwind classes for the copy button
+      copySourceButton.className =
+        "absolute top-2 right-5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-medium py-1 px-2 rounded shadow focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75 transition-colors duration-150";
+
       const preTag = document.createElement("pre");
+      preTag.className =
+        "prose prose-sm max-w-none bg-stone-600 text-stone-200 p-4 rounded-md overflow-x-auto max-h-96 mt-0"; // mt-0 to prevent double margin with button
       const codeTag = document.createElement("code");
-      codeTag.className = "language-javascript"; // For syntax highlighters
+      codeTag.className = "language-javascript";
       codeTag.textContent = "Loading source code...";
+
       preTag.appendChild(codeTag);
+      sourcePane.appendChild(copySourceButton); // Add button before pre tag for better layout
       sourcePane.appendChild(preTag);
+
+      // Event listener for the copy button
+      copySourceButton.addEventListener("click", () => {
+        if (
+          navigator.clipboard &&
+          codeTag.textContent !== "Loading source code..." &&
+          codeTag.textContent !== `Error loading source code: ...`
+        ) {
+          navigator.clipboard
+            .writeText(codeTag.textContent)
+            .then(() => {
+              const originalText = copySourceButton.textContent;
+              copySourceButton.textContent = "Copied!";
+              copySourceButton.classList.add(
+                "bg-emerald-500",
+                "hover:bg-emerald-600"
+              );
+              copySourceButton.classList.remove(
+                "bg-sky-500",
+                "hover:bg-sky-600"
+              );
+              setTimeout(() => {
+                copySourceButton.textContent = originalText;
+                copySourceButton.classList.remove(
+                  "bg-emerald-500",
+                  "hover:bg-emerald-600"
+                );
+                copySourceButton.classList.add(
+                  "bg-sky-500",
+                  "hover:bg-sky-600"
+                );
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy source code: ", err);
+              copySourceButton.textContent = "Copy Failed";
+              setTimeout(() => {
+                copySourceButton.textContent = "Copy Source";
+              }, 2000);
+            });
+        } else {
+          console.warn("Clipboard API not available or no content to copy.");
+        }
+      });
 
       tabContentArea.appendChild(demoPane);
       tabContentArea.appendChild(sourcePane);
-
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabContentArea);
       block.appendChild(tabsContainer);
 
-      // Tab switching logic
-      const tabButtons = [demoButton, sourceButton];
-      const tabPanes = [demoPane, sourcePane];
-
-      tabButtons.forEach((button) => {
+      [demoButton, sourceButton].forEach((button) => {
         button.addEventListener("click", () => {
-          tabButtons.forEach((btn) => btn.classList.remove("active"));
-          tabPanes.forEach((pane) => pane.classList.remove("active"));
-
-          button.classList.add("active");
-          const targetPaneId = button.dataset.tabTarget;
-          document.getElementById(targetPaneId)?.classList.add("active");
+          setActiveTab(button);
+          [demoPane, sourcePane].forEach((pane) => {
+            pane.classList.toggle(
+              "hidden",
+              pane.id !== button.dataset.tabTarget
+            );
+          });
         });
       });
 
-      // Fetch and display source code
       try {
         const sourceResponse = await fetch(vueAppScriptPath);
         if (!sourceResponse.ok)
@@ -227,35 +305,28 @@ document.addEventListener("DOMContentLoaded", () => {
           );
         const sourceText = await sourceResponse.text();
         codeTag.textContent = sourceText;
-        // If using a syntax highlighter like Prism.js, you might need to re-trigger it here:
-        // if (typeof Prism !== 'undefined') { Prism.highlightElement(codeTag); }
       } catch (err) {
         codeTag.textContent = `Error loading source code: ${err.message}`;
-        console.error(`Failed to load source for ${vueAppScriptPath}:`, err);
       }
 
-      // Load and mount the Vue app script for the demo tab
       const script = document.createElement("script");
       script.src = vueAppScriptPath;
       script.type = "text/javascript";
       script.async = true;
       script.onload = () =>
-        console.log(
-          `Vue app script loaded: ${vueAppScriptPath} for demo ${solutionId}`
-        );
+        console.log(`Vue app script loaded: ${vueAppScriptPath}`);
       script.onerror = () => {
-        console.error(`Failed to load Vue app script: ${vueAppScriptPath}`);
         const mountElement = document.getElementById(vueAppMountPointId);
         if (mountElement)
-          mountElement.innerHTML = `<p class="text-red-500">Error loading interactive demo.</p>`;
+          mountElement.innerHTML = `<p class="text-red-500 p-2">Error loading interactive demo.</p>`;
       };
       document.head.appendChild(script);
     });
   }
 
   function generateTableOfContents() {
-    // ... (TOC generation logic remains the same)
-    if (tocPlaceholder) tocPlaceholder.remove();
+    const currentPlaceholder = tocList.querySelector(".toc-placeholder-item");
+    if (currentPlaceholder) currentPlaceholder.remove();
     tocList.innerHTML = "";
 
     const headers = trainingContentArea.querySelectorAll("h1, h2, h3");
@@ -264,7 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
     headers.forEach((header, index) => {
       const text = header.textContent.trim();
       if (!text) return;
-
       let id = header.id;
       if (!id) {
         id = `header-${text
@@ -278,7 +348,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const link = document.createElement("a");
       link.href = `#${id}`;
       link.textContent = text;
-      listItem.className = `toc-${header.tagName.toLowerCase()}`;
+      link.className =
+        "block py-1.5 px-2.5 rounded-md hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-150 text-stone-600";
+
+      if (header.tagName === "H1")
+        link.classList.add("font-semibold", "text-stone-700");
+      else if (header.tagName === "H2") link.classList.add("ml-3");
+      else if (header.tagName === "H3") link.classList.add("ml-6", "text-sm");
+
       listItem.appendChild(link);
       tocList.appendChild(listItem);
       tocHasItems = true;
@@ -286,14 +363,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!tocHasItems) {
       tocList.innerHTML =
-        '<li class="italic text-gray-500 p-2">No headers found for TOC.</li>';
+        '<li class="italic text-stone-500 p-2">No headers found for TOC.</li>';
     } else {
       setupScrollSpy();
     }
   }
 
   function setupScrollSpy() {
-    // ... (Scroll spy logic remains the same)
     const tocLinks = Array.from(tocList.querySelectorAll("a"));
     const headerElements = tocLinks
       .map((link) => {
@@ -304,12 +380,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (headerElements.length === 0) return;
 
-    const observerOptions = {
-      rootMargin: "-10% 0px -50% 0px",
-      threshold: 0,
-    };
-
+    const observerOptions = { rootMargin: "-10% 0px -50% 0px", threshold: 0 };
     let activeLink = null;
+    const activeLinkBaseClasses = ["hover:bg-sky-100"];
+    const activeLinkSpecificClasses = [
+      "bg-sky-100",
+      "text-sky-700",
+      "font-semibold",
+      "border-l-2",
+      "border-sky-600",
+      "pl-[calc(0.625rem-2px)]",
+    ];
 
     const intersectionObserver = new IntersectionObserver((entries) => {
       let currentTopVisibleEntry = null;
@@ -325,27 +406,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      if (activeLink) {
-        activeLink.classList.remove("active");
-        activeLink = null;
+      tocLinks.forEach((link) => {
+        link.classList.remove(...activeLinkSpecificClasses);
+        link.classList.add(...["text-stone-600", "hover:bg-stone-100"]);
+        if (link.parentElement.classList.contains("toc-h1"))
+          link.classList.add("font-semibold", "text-stone-700");
+        else if (link.parentElement.classList.contains("toc-h2"))
+          link.classList.add("ml-3");
+        else if (link.parentElement.classList.contains("toc-h3"))
+          link.classList.add("ml-6", "text-sm");
+      });
+      activeLink = null;
+
+      let targetEntry = currentTopVisibleEntry;
+      if (!targetEntry) {
+        targetEntry = entries.find((e) => e.isIntersecting);
       }
 
-      if (currentTopVisibleEntry) {
-        const id = currentTopVisibleEntry.target.id;
+      if (targetEntry) {
+        const id = targetEntry.target.id;
         const tocLink = tocList.querySelector(`a[href="#${id}"]`);
         if (tocLink) {
-          tocLink.classList.add("active");
+          tocLink.classList.remove(...["text-stone-600", "hover:bg-stone-100"]);
+          tocLink.classList.add(
+            ...activeLinkBaseClasses,
+            ...activeLinkSpecificClasses
+          );
           activeLink = tocLink;
-        }
-      } else {
-        const anyIntersecting = entries.find((e) => e.isIntersecting);
-        if (anyIntersecting) {
-          const id = anyIntersecting.target.id;
-          const tocLink = tocList.querySelector(`a[href="#${id}"]`);
-          if (tocLink) {
-            tocLink.classList.add("active");
-            activeLink = tocLink;
-          }
         }
       }
     }, observerOptions);
@@ -357,7 +444,13 @@ document.addEventListener("DOMContentLoaded", () => {
         `a[href="${window.location.hash}"]`
       );
       if (initialActiveLink) {
-        initialActiveLink.classList.add("active");
+        initialActiveLink.classList.remove(
+          ...["text-stone-600", "hover:bg-stone-100"]
+        );
+        initialActiveLink.classList.add(
+          ...activeLinkBaseClasses,
+          ...activeLinkSpecificClasses
+        );
         activeLink = initialActiveLink;
       }
     } else if (headerElements.length > 0 && tocLinks.length > 0) {
@@ -367,7 +460,13 @@ document.addEventListener("DOMContentLoaded", () => {
         firstHeaderRect.top < window.innerHeight * 0.5
       ) {
         if (!activeLink) {
-          tocLinks[0].classList.add("active");
+          tocLinks[0].classList.remove(
+            ...["text-stone-600", "hover:bg-stone-100"]
+          );
+          tocLinks[0].classList.add(
+            ...activeLinkBaseClasses,
+            ...activeLinkSpecificClasses
+          );
           activeLink = tocLinks[0];
         }
       }
