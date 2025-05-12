@@ -1,7 +1,6 @@
-import {
-  createApp,
-  ref,
-} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+const { createApp, ref } = Vue;
+
+const mountPointId = "vue-app-list"; // for document rendering
 
 const app = createApp({
   setup() {
@@ -41,29 +40,36 @@ const app = createApp({
     };
   },
   template: `
-    <h1>{{ header }}</h1>
+    <h2>{{ header }}</h2>
     <form
-      class="add-item-form"
+      class="space-y-6 mb-10"
       @submit.prevent="items.push({ id: items.length + 1, name: newItem })">
-      <input v-model.trim="newItem" type="text" placeholder="Add a new item...">
-      Priority: 
-      <select v-model="newItemPriory">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-      <label><input type="checkbox" v-model="newItemActive">Active</label>
-
-      <br>
-        <button class="btn btn-primary" >
-          Add Item
-        </button>
-      </br>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-3 lg:grid-cols-3">
+        <div>
+            <label class="default-label">Add a New Item</label>
+            <input v-model.trim="newItem" type="text" placeholder="Enter the Name..." class="default-textbox">
+        </div>
+        <div>
+            <label class="default-label">Priority</label>
+            <select v-model="newItemPriory" class="default-selectbox">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+        </div>
+        <div>
+          <label class="default-label">Active</label>
+          <input type="checkbox" v-model="newItemActive" class="default-checkbox">
+        </div>
+        <div>
+          <button type="submit" class="default-btn">Add Item</button>
+        </div>
+      </div>
     </form>
-    <ul>
-      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+    <ul class="styled-item-list">
+        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
     </ul>
   `,
 });
 
-app.mount("#app");
+app.mount(`#${mountPointId}`);

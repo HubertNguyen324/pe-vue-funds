@@ -41,7 +41,7 @@ const app = createApp({
   },
   template: `
     <h3>{{ header }}</h3>
-    <div class="grid grid-cols-4 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-3 lg:grid-cols-3">
         <div>
             <label class="default-label">Add a New Item</label>
             <input v-model.trim="newItem" type="text" placeholder="Enter the Name..." class="default-textbox">
