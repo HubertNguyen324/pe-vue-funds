@@ -10,8 +10,9 @@ const app = createApp({
     };
   },
   template: `
-    <h1>{{ msg || 'Welcome' }}</h1>
-    <input class="form-input" v-model="msg" type="text">
+    <h3>{{ msg || 'Welcome' }}</h3>
+    <label class="default-label">Enter a Text</label>
+    <input v-model="msg" type="text" class="default-textbox">
   `,
 });
 

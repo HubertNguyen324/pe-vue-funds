@@ -2,7 +2,7 @@
 // It assumes Vue is globally available.
 
 (function () {
-  const mountPointId = "vue-app-capital-of-france"; // Must match ID in training-content.md
+  const mountPointId = "vue-app-capital-of-france";
   const mountElement = document.getElementById(mountPointId);
 
   if (!mountElement) {
@@ -27,12 +27,6 @@
 
       onMounted(() => {
         problem.value.enhanceAvailable = true;
-        // Clear noscript content if Vue is enhancing this specific part
-        const noscriptContent =
-          mountElement.querySelector(".noscript-solution");
-        if (noscriptContent) {
-          //  noscriptContent.remove(); // Or hide it, depending on desired behavior
-        }
       });
 
       return {
@@ -40,27 +34,27 @@
         toggleSolution,
       };
     },
-    // Template for this specific Vue app
-    // This will be rendered inside the div with id="vue-app-capital-of-france"
     template: `
-            <div>
-                <button v-if="problem.enhanceAvailable" @click="toggleSolution" class="toggle-button">
-                    {{ problem.solutionVisible ? 'Hide' : 'Show' }} Solution
-                </button>
-                <div v-if="problem.solutionVisible" class="solution-content p-3 bg-white border rounded-md mt-2">
-                    <p><strong>Solution (Interactive):</strong></p>
-                    <p>The capital of France is Paris.</p>
-                    <blockquote>
-                        Paris is renowned for its art, fashion, gastronomy and culture.
-                    </blockquote>
-                </div>
-                <div v-if="!problem.enhanceAvailable && typeof problem !== 'undefined'" class="p-3 bg-gray-50 border rounded-md text-sm text-gray-600">
-                     Loading interactive solution...
-                </div>
-
-            </div>
-        `,
+          <div class="p-1"> <button v-if="problem.enhanceAvailable" @click="toggleSolution"
+                      class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mb-3">
+                  {{ problem.solutionVisible ? 'Hide' : 'Show' }} Solution
+              </button>
+              <div v-if="problem.solutionVisible"
+                   class="solution-content p-4 bg-gray-50 border border-gray-200 rounded-md prose prose-sm max-w-none"> <p><strong>Solution (Interactive):</strong></p>
+                  <p>The capital of France is Paris.</p>
+                  <blockquote>
+                      Paris is renowned for its art, fashion, gastronomy and culture.
+                  </blockquote>
+              </div>
+              <div v-if="!problem.enhanceAvailable && typeof problem !== 'undefined'"
+                   class="p-3 bg-gray-100 border border-gray-200 rounded-md text-sm text-gray-600">
+                   Loading interactive solution...
+              </div>
+          </div>
+      `,
   }).mount(`#${mountPointId}`);
 
-  console.log("Capital of France Vue app initialized and mounted.");
+  console.log(
+    "Capital of France Vue app initialized and mounted (Tailwind version)."
+  );
 })();

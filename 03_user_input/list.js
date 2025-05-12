@@ -40,28 +40,29 @@ const app = createApp({
     };
   },
   template: `
-    <h1>{{ header }}</h1>
-    <div class="form-row">
-        <div class="form-group">
-          <label>Label</label>
-          <input class="form-input" v-model.trim="newItem" type="text" placeholder="Add a new item...">
+    <h3>{{ header }}</h3>
+    <div class="grid grid-cols-4 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-3">
+        <div>
+            <label class="default-label">Add a New Item</label>
+            <input v-model.trim="newItem" type="text" placeholder="Enter the Name..." class="default-textbox">
         </div>
-        <div class="form-group">
-          <label>Priority</label>
-          <select class="form-select" v-model="newItemPriory">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
+        <div>
+            <label class="default-label">Priority</label>
+            <select v-model="newItemPriory" class="default-selectbox">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
         </div>
-        <div class="form-group">  
-          <label>Active</label>
-          <input class="form-check-input" type="checkbox" v-model="newItemActive">
+        <div>
+          <label class="default-label">Active</label>
+          <input type="checkbox" v-model="newItemActive" class="default-checkbox">
         </div>
-        <div class="form-group">
-          <button class="form-button" @click="items.push({ id: items.length + 1, name: newItem })">Add Item</button>
+        <div>
+          <button type="button" @click="items.push({ id: items.length + 1, name: newItem })" class="default-btn">Add Item</button>
         </div>
     </div>
+    
     <ul class="styled-item-list">
       <li v-for="item in items" :key="item.id">{{ item.name }}</li>
     </ul>

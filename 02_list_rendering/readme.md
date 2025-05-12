@@ -10,13 +10,7 @@ In this lesson, we're taking a closer look at Vue's `v-for` directive, which let
 
 <div class="vue-interactive-solution" data-solution-id="list" data-vue-app-script="list.js">
     <h3>A Simple Item List</h3>
-    <div class="solution-container" id="vue-app-list">
-        <noscript>
-            <div class="solution-content noscript-solution p-3 bg-gray-50 border rounded-md">
-                <p>This interactive counter requires JavaScript to function.</p>
-            </div>
-        </noscript>
-    </div>
+    <div class="solution-container" id="vue-app-list"></div>
 </div>
 
 ## Destructure the `item` Object

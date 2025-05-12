@@ -3,214 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Training Document with UI Components</title>
+    <title>Interactive Training Document (Tailwind CSS v3)</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </head>
-<body class="font-inter">
-
-    <button id="toc-toggle-button" aria-label="Toggle Table of Contents" aria-expanded="false">
+<body class="antialiased">
+    <button id="toc-toggle-button"
+            class="fixed top-4 left-4 z-[1003] bg-blue-500 hover:bg-blue-600 text-white border-none py-2.5 px-4 rounded-md cursor-pointer text-sm shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            aria-label="Toggle Table of Contents"
+            aria-expanded="false">
         ☰ Menu
     </button>
 
-    <aside id="toc-sidebar">
+    <aside id="toc-sidebar"
+           class="fixed top-0 left-0 w-72 h-screen bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-[1002] overflow-y-auto p-6 pt-16">
         <nav id="toc-nav">
-            <h2 class="toc-title">Table of Contents</h2>
-            <ul id="toc-list">
-                <li class="toc-placeholder">Generating TOC...</li>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">Table of Contents</h2>
+            <ul id="toc-list" class="space-y-1">
+                <li class="toc-placeholder-item italic text-gray-500 p-2">Generating TOC...</li>
             </ul>
         </nav>
     </aside>
 
-    <div id="toc-overlay"></div>
+    <div id="toc-overlay"
+         class="fixed inset-0 bg-black bg-opacity-30 z-[1001] opacity-0 invisible transition-all duration-300 ease-in-out">
+    </div>
 
-
-    <div class="main-content-wrapper">
-        <div class="main-content-container">
-            <header class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-800">Interactive Training Module</h1>
-                <p class="text-gray-600">Powered by Markdown and Vue.js</p>
+    <div class="main-content-wrapper mx-auto px-4 sm:px-6 lg:px-8 py-8 pl-16 md:pl-20">
+        <div class="main-content-container bg-white shadow-xl rounded-lg p-6 md:p-8">
+            <header class="text-center mb-10">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Interactive Training Module</h1>
+                <p class="mt-2 text-lg text-gray-600">Powered by Markdown and Vue.js with Tailwind CSS v3</p>
             </header>
 
-            <main id="training-content-area" class="markdown-content" data-markdown-source="training-content.md">
+            <main id="training-content-area"
+                  class="prose prose-lg lg:prose-xl max-w-none"
+                  data-markdown-source="training-content.md">
                 <div class="loading-placeholder p-6 text-center text-gray-500">
                     <p>Loading training content...</p>
                 </div>
                 <noscript>
-                    <div class="noscript-message bg-yellow-100 border border-yellow-300 text-yellow-700 p-4 rounded-md">
-                        <p>The primary content for this training is loaded dynamically using JavaScript from a Markdown file.</p>
-                        <p>Please enable JavaScript to view the interactive training. You can also try viewing the
-                           <a id="noscript-md-link" href="training-content.md" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800">raw Markdown content directly</a>,
+                    <div class="my-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md">
+                        <p class="font-medium">JavaScript Required</p>
+                        <p>The primary content for this training is loaded dynamically. Please enable JavaScript. You can also view the
+                           <a id="noscript-md-link" href="training-content.md" target="_blank" rel="noopener noreferrer" class="font-medium text-yellow-800 hover:text-yellow-900 underline">raw Markdown content directly</a>,
                            but interactive elements will not function.
                         </p>
                     </div>
                 </noscript>
             </main>
 
-            <section id="ui-component-demo" class="mt-12 pt-8 border-t border-gray-200">
-                <h2 class="text-2xl font-semibold mb-6 text-gray-700">UI Component Styles & Layouts Demo</h2>
+            <section id="ui-component-demo" class="mt-16 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-semibold mb-8 text-gray-800">UI Component Styles & Layouts Demo</h2>
 
                 <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700">Vertical Form Layout</h3>
-                <form action="#" method="POST" class="mb-10">
-                    <div class="form-group">
-                        <label for="v-name">Full Name (Vertical)</label>
-                        <input type="text" id="v-name" name="v-name" class="form-input" placeholder="e.g., Ada Lovelace">
+                <form action="#" method="POST" class="space-y-6 mb-10">
+                    <div>
+                        <label for="v-name" class="default-label">Full Name (Vertical)</label>
+                        <input type="text" id="v-name" name="v-name" class="default-textbox" placeholder="e.g., Ada Lovelace">
                     </div>
-
-                    <div class="form-group">
-                        <label for="v-email">Email Address (Vertical)</label>
-                        <input type="email" id="v-email" name="v-email" class="form-input" placeholder="you@example.com">
+                    <div>
+                        <label for="v-email" class="default-label">Email Address (Vertical)</label>
+                        <input type="email" id="v-email" name="v-email" class="default-textbox" placeholder="you@example.com">
                     </div>
-
-                    <div class="form-group">
-                        <label for="v-country">Country (Vertical)</label>
-                        <select id="v-country" name="v-country" class="form-select">
-                            <option value="">Select a country...</option>
-                            <option value="us">United States</option>
-                            <option value="ca">Canada</option>
-                            <option value="gb">United Kingdom</option>
-                             <option value="vn">Vietnam</option>
-                            <option value="au">Australia</option>
-                        </select>
-                    </div>
-                     <div class="form-group">
-                        <label>Interests (Vertical Stack)</label>
-                        <div class="form-check">
-                            <input type="checkbox" id="v-interest-coding" name="v-interests[]" value="coding" class="form-check-input">
-                            <label for="v-interest-coding" class="form-check-label">Coding</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" id="v-interest-design" name="v-interests[]" value="design" class="form-check-input" checked>
-                            <label for="v-interest-design" class="form-check-label">Design</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="form-button">Submit Vertical Form</button>
+                    <div>
+                        <button type="submit" class="default-btn">Submit Vertical Form</button>
                     </div>
                 </form>
 
                 <h3 class="text-xl font-semibold mt-10 mb-4 text-gray-700">Horizontal Form Layouts</h3>
 
-                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">1. Inline Label and Input</h4>
-                <form action="#" method="POST" class="mb-10">
-                    <div class="form-group-inline">
-                        <label for="h-name-inline">Name:</label>
-                        <input type="text" id="h-name-inline" name="h-name-inline" class="form-input" placeholder="Your Name Here">
+                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">1. Inline Label and Input (Flexbox)</h4>
+                <form action="#" method="POST" class="space-y-4 mb-10">
+                    <div class="flex items-center space-x-3">
+                        <label for="h-name-inline" class="default-label w-20 shrink-0">Name:</label>
+                        <input type="text" id="h-name-inline" name="h-name-inline" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Your Name Here">
                     </div>
-                    <div class="form-group-inline">
-                        <label for="h-email-inline">Email:</label>
-                        <input type="email" id="h-email-inline" name="h-email-inline" class="form-input" placeholder="your.email@example.com">
+                    <div class="flex items-center space-x-3">
+                        <label for="h-email-inline" class="default-label w-20 shrink-0">Email:</label>
+                        <input type="email" id="h-email-inline" name="h-email-inline" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="your.email@example.com">
                     </div>
-                     <div class="form-group">
-                        <button type="submit" class="form-button">Submit Inline Form</button>
+                     <div>
+                        <button type="submit" class="default-btn">Submit Inline Form</button>
                     </div>
                 </form>
 
-                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">2. Multiple Inputs in a Row (Form Row)</h4>
-                <form action="#" method="POST" class="mb-10">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="h-first-name">First Name</label>
-                            <input type="text" id="h-first-name" name="h-first-name" class="form-input" placeholder="Ada">
+                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">2. Two Components in a Row (Grid)</h4>
+                <form action="#" method="POST" class="space-y-6 mb-10">
+                    <div class="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+                        <div>
+                            <label for="h-first-name" class="default-label">First Name</label>
+                            <input type="text" id="h-first-name" name="h-first-name" class="default-textbox" placeholder="Ada">
                         </div>
-                        <div class="form-group">
-                            <label for="h-last-name">Last Name</label>
-                            <input type="text" id="h-last-name" name="h-last-name" class="form-input" placeholder="Lovelace">
+                        <div>
+                            <label for="h-last-name" class="default-label">Last Name</label>
+                            <input type="text" id="h-last-name" name="h-last-name" class="default-textbox" placeholder="Lovelace">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="h-city">City</label>
-                            <input type="text" id="h-city" name="h-city" class="form-input" placeholder="London">
+                     <div>
+                        <button type="submit" class="default-btn">Submit Two-Column Form</button>
+                    </div>
+                </form>
+
+                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">3. Three Components in a Row (Grid)</h4>
+                <form action="#" method="POST" class="space-y-6 mb-10">
+                    <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-3">
+                        <div>
+                            <label for="h-item1" class="default-label">Item 1</label>
+                            <input type="text" id="h-item1" name="h-item1" class="default-textbox" placeholder="Value 1">
                         </div>
-                        <div class="form-group">
-                            <label for="h-zip">Zip Code</label>
-                            <input type="text" id="h-zip" name="h-zip" class="form-input" placeholder="W1A 0AX">
+                        <div>
+                            <label for="h-item2" class="default-label">Item 2</label>
+                            <input type="text" id="h-item2" name="h-item2" class="default-textbox" placeholder="Value 2">
                         </div>
-                        <div class="form-group">
-                            <label for="h-country-row">Country</label>
-                            <select id="h-country-row" name="h-country-row" class="form-select">
-                                <option value="">Select...</option>
-                                <option value="us">USA</option>
-                                <option value="ca">Canada</option>
-                                <option value="vn">Vietnam</option>
+                        <div>
+                            <label for="h-item3" class="default-label">Item 3</label>
+                            <select id="h-item3" name="h-item3" class="default-selectbox">
+                                <option>Option A</option>
+                                <option>Option B</option>
                             </select>
                         </div>
                     </div>
-                     <div class="form-group">
-                        <button type="submit" class="form-button">Submit Row Form</button>
+                     <div>
+                        <button type="submit" class="default-btn">Submit Three-Column Form</button>
                     </div>
                 </form>
 
-                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">3. Horizontal Checkboxes/Radios</h4>
-                <form action="#" method="POST" class="mb-10">
-                    <div class="form-group">
-                        <label>Notification Preferences (Horizontal)</label>
-                        <div class="form-options-horizontal">
-                            <div class="form-check">
-                                <input type="checkbox" id="h-notify-email" name="h-notify[]" value="email" class="form-check-input" checked>
-                                <label for="h-notify-email" class="form-check-label">Email Updates</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="h-notify-sms" name="h-notify[]" value="sms" class="form-check-input">
-                                <label for="h-notify-sms" class="form-check-label">SMS Alerts</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="h-notify-app" name="h-notify[]" value="app" class="form-check-input">
-                                <label for="h-notify-app" class="form-check-label">In-App Notifications</label>
-                            </div>
+                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">4. Four Components in a Row (Grid)</h4>
+                <form action="#" method="POST" class="space-y-6 mb-10">
+                     <div class="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                            <label for="h-field1" class="default-label">Field 1</label>
+                            <input type="text" id="h-field1" name="h-field1" class="default-textbox">
+                        </div>
+                        <div>
+                            <label for="h-field2" class="default-label">Field 2</label>
+                            <input type="text" id="h-field2" name="h-field2" class="default-textbox">
+                        </div>
+                        <div>
+                            <label for="h-field3" class="default-label">Field 3</label>
+                            <input type="text" id="h-field3" name="h-field3" class="default-textbox">
+                        </div>
+                        <div>
+                            <label for="h-field4" class="default-label">Field 4</label>
+                            <input type="text" id="h-field4" name="h-field4" class="default-textbox">
                         </div>
                     </div>
-                    <div class="form-group">
-                         <label>Subscription Type (Horizontal)</label>
-                         <div class="form-options-horizontal">
-                            <div class="form-radio">
-                                <input type="radio" id="h-sub-free" name="h_subscription" value="free" class="form-radio-input" checked>
-                                <label for="h-sub-free" class="form-radio-label">Free Tier</label>
-                            </div>
-                            <div class="form-radio">
-                                <input type="radio" id="h-sub-premium" name="h_subscription" value="premium" class="form-radio-input">
-                                <label for="h-sub-premium" class="form-radio-label">Premium Tier</label>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <button type="submit" class="form-button">Save Preferences</button>
+                     <div>
+                        <button type="submit" class="default-btn">Submit Four-Column Form</button>
                     </div>
                 </form>
 
 
-                <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700">Previously Styled Item List Example</h3>
+                <h4 class="text-lg font-medium mt-6 mb-3 text-gray-600">5. Horizontal Checkboxes/Radios (Flexbox)</h4>
+                <form action="#" method="POST" class="space-y-6 mb-10">
+                    <div>
+                        <label class="default-label">Notification Preferences (Horizontal)</label>
+                        <div class="mt-2 flex flex-wrap gap-x-8 gap-y-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="h-notify-email" name="h-notify[]" value="email" class="default-checkbox" checked>
+                                <label for="h-notify-email" class="ml-2 block text-sm text-gray-900">Email Updates</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="h-notify-sms" name="h-notify[]" value="sms" class="default-checkbox">
+                                <label for="h-notify-sms" class="ml-2 block text-sm text-gray-900">SMS Alerts</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="default-label">Priority (Horizontal)</label>
+                        <div class="mt-2 flex flex-wrap gap-x-8 gap-y-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="h-notify-email" name="h-notify[]" value="email" class="default-radio" checked>
+                                <label for="h-notify-email" class="ml-2 block text-sm text-gray-900">Low</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="h-notify-sms" name="h-notify[]" value="sms" class="default-radio">
+                                <label for="h-notify-sms" class="ml-2 block text-sm text-gray-900">High</label>
+                            </div>
+                        </div>
+                    </div>
+                     <div>
+                        <button type="submit" class="default-btn">Save Preferences</button>
+                    </div>
+                </form>
+
+
+                <h3 class="text-xl font-semibold mt-10 mb-4 text-gray-800">Styled Item List Example</h3>
                 <ul class="styled-item-list">
-                    <li><strong>Item 1:</strong> Description for the first item.</li>
+                    <li class="item-strikethrough"><strong>Item 1 (Done):</strong> This item is completed.</li>
                     <li><strong>Item 2:</strong> Some details about the second entry.</li>
-                    <li><strong>Item 3:</strong> Another interesting point.</li>
-                    <li><strong>Item 4:</strong> Final thoughts on this list.</li>
+                    <li class="item-high-priority"><strong>Item 3:</strong> Some details about the third entry.</li>
+                    <li class="item-high-priority item-strikethrough"><strong>Item 3:</strong> Some details about the third entry.</li>
                 </ul>
 
             </section>
-
-        </div>
+            </div>
     </div>
 
     <noscript>
-        <div class="noscript-message bg-yellow-100 border border-yellow-300 text-yellow-700 p-4 rounded-md mt-8 text-center fixed bottom-0 w-full">
+        <div class="fixed bottom-0 left-0 w-full p-4 bg-yellow-100 border-t border-yellow-300 text-yellow-700 text-center">
             <strong>Note:</strong> This page uses JavaScript for dynamic content loading and enhanced interactivity. Some features may not be available without JavaScript enabled.
         </div>
     </noscript>
 
     <script src="../js/main.js"></script>
-
 </body>
 </html>
