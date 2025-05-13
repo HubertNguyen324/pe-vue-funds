@@ -7,7 +7,7 @@ When the expression gets too verbose, or we need the same logic in multiple plac
 > When use Vue's `ref` in a method, you have to use `.value` to access its data. Because Vue uses proxies in order to create reactive data.
 > Every time you call a `ref` function, it will return a reactive object, which contains your actual data in the `.value` property.
 
+<h2>Simple To-Do List App</h2>
 <div class="vue-interactive-solution" data-solution-id="item-list" data-vue-app-script="app.js">
-    <h3>A Simple Item List App</h3>
     <div class="solution-container"></div>
 </div>

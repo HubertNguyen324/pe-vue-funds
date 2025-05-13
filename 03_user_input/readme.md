@@ -4,8 +4,8 @@
 
 We will continue to learn about the reactivity system in this lesson. You'll learn how to handle user inputs with the `v-model` directive. `v-model` gives super powers to text inputs, checkboxes, radio buttons, selects, and more!
 
+<h2>Simple To-Do List App</h2>
 <div class="vue-interactive-solution" data-solution-id="list" data-vue-app-script="app.js">
-    <h3>A Simple Item List</h3>
     <div class="solution-container"></div>
 </div>
 

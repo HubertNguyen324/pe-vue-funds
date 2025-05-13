@@ -2,10 +2,8 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
-    "./src/**/*.html", // Scans all HTML files in the root directory
-    "./src/**/*.js", // Scans all JavaScript files in the js directory
-    "./06_conditionals/*.js",
-    // Add any other paths to files that will contain Tailwind classes
+    "./**/*.html", // Scans all HTML files
+    "./**/*.js", // Scans all JavaScript files
   ],
   theme: {
     extend: {

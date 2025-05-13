@@ -1,101 +1,96 @@
-import {
-  createApp,
-  ref,
-} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+const { createApp, ref } = Vue;
+
+const mountPointId = "vue-app-todo-list"; // for document rendering
 
 const app = createApp({
   setup() {
     const header = ref("Listing App");
-    const items = ref([
-      {
-        id: 1,
-        name: "item 1",
-        highPriority: false,
-        done: true,
-      },
-      {
-        id: 2,
-        name: "item 2",
-        highPriority: false,
-        done: false,
-      },
-      {
-        id: 3,
-        name: "item 3",
-        highPriority: true,
-        done: true,
-      },
-      {
-        id: 4,
-        name: "item 4",
-        done: true,
-      },
-      {
-        id: 5,
-        name: "item 5",
-        highPriority: true,
-        done: false,
-      },
-    ]);
+    // const items = ref([
+    //   {
+    //     id: 1,
+    //     name: "item 1",
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "item 2",
+    //   },
+    //   {
+    //     id: 3,
+    //     name: "item 3",
+    //   },
+    //   {
+    //     id: 4,
+    //     name: "item 4",
+    //   },
+    //   {
+    //     id: 5,
+    //     name: "item 5",
+    //   },
+    // ]);
+    const items = ref([]);
     const newItem = ref("");
-    const newItemHighPriority = ref(false);
-    const newItemDone = ref(false);
+    const newItemPriory = ref("low");
+    const newItemActive = ref(true);
     const editing = ref(false);
 
     const addItem = () => {
-      items.value.push({
-        id: items.value.length + 1,
-        name: newItem.value,
-        highPriority: newItemHighPriority.value,
-        done: newItemDone.value,
-      });
+      items.value.push({ id: items.value.length + 1, name: newItem.value });
       newItem.value = "";
+      newItemPriory.value = "low";
+      newItemActive.value = true;
     };
 
-    const enableEdit = (e) => {
+    const toggleEditing = (e) => {
       editing.value = e;
-      newItem.value = "";
-      newItemHighPriority.value = false;
-      newItemDone.value = false;
-    };
-
-    const toogleDone = (item) => {
-      item.done = !item.done;
     };
 
     return {
       header,
       items,
       newItem,
-      newItemHighPriority,
-      newItemDone,
+      newItemPriory,
+      newItemActive,
       editing,
       addItem,
-      enableEdit,
-      toogleDone,
+      toggleEditing,
     };
   },
   template: `
-    <div class="header">
-      <h1>{{ header }}</h1>
-      <button v-if="editing" class="btn" @click="enableEdit(false)">Cancel</button>
-      <button v-else class="btn-primary" @click="enableEdit(true)">Add New Item</button>
+    <div class="mb-2">
+      <button class="cancel-btn" v-if="editing" @click="toggleEditing(false)">Cancel</button>
+      <button class="primary-btn" v-else @click="toggleEditing(true)">Edit Mode</button>
     </div>
     <form
-      class="add-item-form"
+      class="space-y-6 mb-10"
       v-if="editing"
       @submit.prevent="addItem">
-      <input v-model.trim="newItem" type="text" placeholder="Add a new item...">
-      <label><input type="checkbox" v-model="newItemHighPriority">High Priority</label>
-      <label><input type="checkbox" v-model="newItemDone">Done</label>
-
-      <button
-        :disabled="newItem.length < 5"
-        @click="addItem"
-        class="btn btn-primary" >
-        Add
-      </button>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-3 lg:grid-cols-3">
+        <div>
+            <label class="default-label">Add a New Item</label>
+            <input v-model.trim="newItem" type="text" placeholder="Enter the Name..." class="default-textbox">
+        </div>
+        <div>
+            <label class="default-label">Priority</label>
+            <select v-model="newItemPriory" class="default-selectbox">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+        </div>
+        <div>
+          <label class="default-label">Active</label>
+          <input type="checkbox" v-model="newItemActive" class="default-checkbox">
+        </div>
+        <div>
+          <button :disabled="newItem.length < 5" class="default-btn">Add Item</button>
+        </div>
+      </div>
     </form>
-    <ul>
-      <li
-        v-for="(
+    <ul class="styled-item-list">
+        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+    </ul>
+    <p v-if="!items.length">The item list is empty.</p>
+  `,
+});
+
+app.mount(`#${mountPointId}`);
