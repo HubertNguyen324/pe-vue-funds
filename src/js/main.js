@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleTOC() {
     const isOpen = document.body.classList.toggle("toc-open");
     tocToggleButton.setAttribute("aria-expanded", isOpen.toString());
-    tocToggleButton.textContent = isOpen ? "✕ Close" : "☰ Menu";
+    tocToggleButton.textContent = isOpen ? "✕" : "☰";
   }
   tocToggleButton.addEventListener("click", toggleTOC);
   tocOverlay.addEventListener("click", toggleTOC);
