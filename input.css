@@ -22,9 +22,26 @@
     @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
   }
 
+  .primary-btn:hover {
+    @apply bg-blue-700;
+  }
+
+  .primary-btn:focus {
+    @apply ring-2 ring-blue-500;
+  }
+
   .cancel-btn {
     @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
   }
+
+  .cancel-btn:hover {
+    @apply bg-stone-600;
+  }
+
+  .cancel-btn:focus {
+    @apply ring-2 ring-stone-500;
+  }
+
   .default-btn {
     @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
   }
