@@ -4,6 +4,7 @@ module.exports = {
   content: [
     "./**/*.html", // Scans all HTML files
     "./**/*.js", // Scans all JavaScript files
+    "!./node_modules/**/*", // Excludes node_modules folder
   ],
   theme: {
     extend: {

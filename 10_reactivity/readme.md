@@ -28,8 +28,10 @@ const increment = () => {
 
 1. Use `reactive` for `newItem` and a new `state` variable for app state management.
 2. Add item selection feature
-3.
+3. Add remove item feature.
 
 <div class="vue-interactive-solution" data-solution-id="todo-list" data-vue-app-script="app.js">
     <div class="solution-container"></div>
 </div>
+
+> To clone data of an object, use the spread operator. For example, `{ ...obj }`
