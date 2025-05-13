@@ -6,7 +6,7 @@ We will continue to learn about the reactivity system in this lesson. You'll lea
 
 <div class="vue-interactive-solution" data-solution-id="list" data-vue-app-script="app.js">
     <h3>A Simple Item List</h3>
-    <div class="solution-container" id="vue-app-list"></div>
+    <div class="solution-container"></div>
 </div>
 
 ## Modifiers

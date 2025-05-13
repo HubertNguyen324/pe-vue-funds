@@ -40,7 +40,6 @@ const app = createApp({
     };
   },
   template: `
-    <h2>{{ header }}</h2>
     <form
       class="space-y-6 mb-10"
       @submit.prevent="items.push({ id: items.length + 1, name: newItem })">

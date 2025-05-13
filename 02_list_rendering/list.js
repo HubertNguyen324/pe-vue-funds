@@ -4,7 +4,6 @@ const mountPointId = "vue-app-list"; // for document rendering
 
 const app = createApp({
   setup() {
-    const header = ref("Listing App");
     const items = ref([
       {
         id: 1,
@@ -28,13 +27,11 @@ const app = createApp({
       },
     ]);
     return {
-      header,
       items,
     };
   },
   template: `
     <div class="p-1">
-      <h3>{{ header }}</h3>
       <ul class="styled-item-list">
         <li v-for="item in items" :key="item.id">{{ item.name }}</li>
       </ul>

@@ -10,7 +10,7 @@ In this lesson, we're taking a closer look at Vue's `v-for` directive, which let
 
 <div class="vue-interactive-solution" data-solution-id="list" data-vue-app-script="list.js">
     <h3>A Simple Item List</h3>
-    <div class="solution-container" id="vue-app-list"></div>
+    <div class="solution-container"></div>
 </div>
 
 ## Destructure the `item` Object

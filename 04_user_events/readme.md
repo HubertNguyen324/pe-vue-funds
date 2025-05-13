@@ -5,8 +5,8 @@ In this lesson, we'll learn how to respond to and handle user events with Vue's 
 Vue harnesses the power of JavaScript events in a short, declarative syntax. This makes it easy to react to clicks, scrollingm mouse movement, .etc.
 
 <div class="vue-interactive-solution" data-solution-id="list" data-vue-app-script="app.js">
-    <h3>A Simple Item List</h3>
-    <div class="solution-container" id="vue-app-list"></div>
+    <h3>A Simple Item List App</h3>
+    <div class="solution-container"></div>
 </div>
 
 ## Using `v-on` Directive
