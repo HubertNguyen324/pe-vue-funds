@@ -106,19 +106,19 @@
   }
 
   /* --- Strikethrough style for list items --- */
-  .styled-item-list li.item-strikethrough {
+  .styled-item-list li.strikethrough {
     @apply line-through text-stone-500; /* Apply line-through and a more muted text color */
   }
-  .styled-item-list li.item-strikethrough strong {
+  .styled-item-list li.strikethrough strong {
     @apply text-stone-600; /* Adjust strong text color for strikethrough items if needed */
   }
 
   /* --- High-priority style for list items --- */
-  .styled-item-list li.item-high-priority {
+  .styled-item-list li.highPriority {
     /* Example: Using a distinct color like a warm red for high priority text */
-    @apply text-orange-400;
+    @apply text-orange-400 font-semibold;
   }
-  .styled-item-list li.item-high-priority strong {
+  .styled-item-list li.highPriority strong {
     /* Ensure strong text within high-priority items also gets the priority color, or a variation */
     @apply text-orange-600;
   }

@@ -1,13 +1,28 @@
-# HTML Attribute Binding in Vue
+# Dynamic CSS Classes with Vue
 
-We know how to render data in the DOM with Vue 3, and now it's time to take a closer look at how we can bind HTML attributes to our Vue data.
+A common need and use case for attribute bindings is to manipulate the look of elements with CSS classes or style attributes.
 
-This is achieved with Vue's `v-bind` directive and would let us change the `href` (or any other HTML attribute) of a link or swap out an image if we need to.
+To make this task easier than ever, Vue provides special enhancements when `v-bind` is used with the class or style attribute. In this lesson, we learn how to apply dynamic classes based on our Vue data.
 
-> - For the link to work properly you should provide the protocol in the input (http:// or https://)
-> - `v-bind` can be shorted to `:`. For example, from `v-bind:disabled` to `:disabled`.
+> - You can add CSS static classes with `v-bind:class`.
+> - For example, `<a class="static-class" :class="{condition: dynamicClass}">`
+> - Using `-` in the name of dynamic CSS classes can result in error.
 
 <h2>Simple To-Do List App</h2>
 <div class="vue-interactive-solution" data-solution-id="todo-list" data-vue-app-script="app.js">
     <div class="solution-container"></div>
 </div>
+
+## Array Syntax
+
+```html
+<!-- An example for array syntax -->
+<a :class="['static-1', 'static-2']"> </a>
+<a
+  :class="[
+    {condition1: dynamicClass1},
+    {condition2: dynamicClass2}
+]"
+>
+</a>
+```

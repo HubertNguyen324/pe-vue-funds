@@ -5,89 +5,94 @@ const mountPointId = "vue-app-todo-list"; // for document rendering
 const app = createApp({
   setup() {
     const header = ref("Listing App");
-    // const items = ref([
-    //   {
-    //     id: 1,
-    //     name: "item 1",
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "item 2",
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "item 3",
-    //   },
-    //   {
-    //     id: 4,
-    //     name: "item 4",
-    //   },
-    //   {
-    //     id: 5,
-    //     name: "item 5",
-    //   },
-    // ]);
-    const items = ref([]);
+    const items = ref([
+      {
+        id: 1,
+        name: "item 1",
+        done: true,
+        highPriority: true,
+      },
+      {
+        id: 2,
+        name: "item 2",
+        done: false,
+        highPriority: true,
+      },
+      {
+        id: 3,
+        name: "item 3",
+        done: false,
+        highPriority: false,
+      },
+      {
+        id: 4,
+        name: "item 4",
+        done: true,
+        highPriority: false,
+      },
+      {
+        id: 5,
+        name: "item 5",
+        done: false,
+        highPriority: false,
+      },
+    ]);
     const newItem = ref("");
-    const newItemPriory = ref("low");
-    const newItemActive = ref(true);
-    const editing = ref(false);
+    const newItemHighPriory = ref(false);
+    const newItemDone = ref(false);
 
     const addItem = () => {
-      items.value.push({ id: items.value.length + 1, name: newItem.value });
+      items.value.push({
+        id: items.value.length + 1,
+        name: newItem.value,
+        highPriority: newItemHighPriory.value,
+        done: newItemDone.value,
+      });
       newItem.value = "";
-      newItemPriory.value = "low";
-      newItemActive.value = true;
+      newItemHighPriory.value = false;
+      newItemDone.value = false;
     };
 
-    const toggleEditing = (e) => {
-      editing.value = e;
+    const toggleDone = (item) => {
+      item.done = !item.done;
     };
 
     return {
       header,
       items,
       newItem,
-      newItemPriory,
-      newItemActive,
-      editing,
+      newItemHighPriory,
+      newItemDone,
       addItem,
-      toggleEditing,
+      toggleDone,
     };
   },
   template: `
-    <div class="mb-2">
-      <button class="cancel-btn" v-if="editing" @click="toggleEditing(false)">Cancel</button>
-      <button class="primary-btn" v-else @click="toggleEditing(true)">Edit Mode</button>
-    </div>
     <form
       class="space-y-6 mb-10"
-      v-if="editing"
       @submit.prevent="addItem">
-      <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-3 lg:grid-cols-3">
-        <div>
+      <div class="grid grid-cols-4 gap-x-6 gap-y-4">
+        <div class="col-span-2">
             <label class="default-label">Add a New Item</label>
             <input v-model.trim="newItem" type="text" placeholder="Enter the Name..." class="default-textbox">
         </div>
-        <div>
-            <label class="default-label">Priority</label>
-            <select v-model="newItemPriory" class="default-selectbox">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+        <div class="col-span-1">
+          <label class="default-label">High Priority</label>
+          <input type="checkbox" v-model="newItemHighPriory" class="default-checkbox">
         </div>
-        <div>
-          <label class="default-label">Active</label>
-          <input type="checkbox" v-model="newItemActive" class="default-checkbox">
+        <div class="col-span-1">
+          <label class="default-label">Done</label>
+          <input type="checkbox" v-model="newItemDone" class="default-checkbox">
         </div>
-        <div>
+      </div>
+      <div>
           <button :disabled="newItem.length < 5" class="default-btn">Add Item</button>
-        </div>
       </div>
     </form>
     <ul class="styled-item-list">
-        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+        <li v-for="item in items" :key="item.id"
+          :class="{strikethrough: item.done, highPriority: item.highPriority}"
+          @click="toggleDone(item)">{{ item.name }}</li>
     </ul>
     <p v-if="!items.length">The item list is empty.</p>
   `,

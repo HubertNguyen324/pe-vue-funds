@@ -2261,14 +2261,14 @@ html {
 
 /* --- Strikethrough style for list items --- */
 
-.styled-item-list li.item-strikethrough {
+.styled-item-list li.strikethrough {
   --tw-text-opacity: 1;
   color: rgb(120 113 108 / var(--tw-text-opacity, 1));
   text-decoration-line: line-through;
   /* Apply line-through and a more muted text color */
 }
 
-.styled-item-list li.item-strikethrough strong {
+.styled-item-list li.strikethrough strong {
   --tw-text-opacity: 1;
   color: rgb(87 83 78 / var(--tw-text-opacity, 1));
   /* Adjust strong text color for strikethrough items if needed */
@@ -2276,13 +2276,14 @@ html {
 
 /* --- High-priority style for list items --- */
 
-.styled-item-list li.item-high-priority {
+.styled-item-list li.highPriority {
   /* Example: Using a distinct color like a warm red for high priority text */
+  font-weight: 600;
   --tw-text-opacity: 1;
   color: rgb(251 146 60 / var(--tw-text-opacity, 1));
 }
 
-.styled-item-list li.item-high-priority strong {
+.styled-item-list li.highPriority strong {
   /* Ensure strong text within high-priority items also gets the priority color, or a variation */
   --tw-text-opacity: 1;
   color: rgb(234 88 12 / var(--tw-text-opacity, 1));
@@ -2417,6 +2418,14 @@ html {
 
 .z-\[1003\] {
   z-index: 1003;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
 }
 
 .float-start {
@@ -2698,6 +2707,30 @@ html {
   width: 100%;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.min-w-\[200px\] {
+  min-width: 200px;
+}
+
+.min-w-full {
+  min-width: 100%;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -2712,6 +2745,10 @@ html {
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.max-w-\[400px\] {
+  max-width: 400px;
 }
 
 .flex-shrink {
@@ -3067,6 +3104,14 @@ html {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -3915,6 +3960,11 @@ html {
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity, 1));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
 }
 
 .bg-opacity-30 {
@@ -7135,8 +7185,32 @@ body.toc-open #toc-overlay {
 }
 
 @media (min-width: 640px) {
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-96 {
+    width: 24rem;
+  }
+
+  .sm\:w-\[640px\] {
+    width: 640px;
+  }
+
+  .sm\:w-\[720px\] {
+    width: 720px;
+  }
+
+  .sm\:min-w-full {
+    min-width: 100%;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .sm\:px-6 {
@@ -7160,6 +7234,10 @@ body.toc-open #toc-overlay {
 }
 
 @media (min-width: 768px) {
+  .md\:w-\[720px\] {
+    width: 720px;
+  }
+
   .md\:max-w-4xl {
     max-width: 56rem;
   }
@@ -7182,6 +7260,14 @@ body.toc-open #toc-overlay {
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-96 {
+    width: 24rem;
+  }
+
+  .lg\:max-w-xl {
+    max-width: 36rem;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
