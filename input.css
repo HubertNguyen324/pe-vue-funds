@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center  border border-transparent  text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center  border border-transparent  text-base font-medium text-white shadow-sm;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-500 text-base font-medium text-white shadow-sm;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply inline-flex justify-center  border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
+    @apply inline-flex justify-center  border border-transparent bg-sky-600 text-base font-medium text-white shadow-sm;
   }
 
   .default-btn:hover {
@@ -57,15 +57,15 @@
   }
   
   .default-label {
-    @apply block text-sm font-medium text-stone-700;
+    @apply block text-base font-medium text-stone-700;
   }
 
   .default-textbox {
-    @apply mt-1 block w-full  border-stone-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm;
+    @apply mt-1 block w-full  border-stone-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-base;
   }
 
   .default-selectbox {
-    @apply mt-1 block w-full  border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm;
+    @apply mt-1 block w-full  border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-base;
   }
 
   .default-checkbox {
@@ -81,7 +81,7 @@
   }
 
   .item-list-delete-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-400 text-sm font-medium text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-400 text-base font-medium text-white shadow-sm;
   }
 
   .item-list-delete-btn:hover {
@@ -152,7 +152,7 @@ body.toc-open #toc-overlay {
 }
 
 #toc-toggle-button {
-  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover: text-white border-none py-2.5   cursor-pointer text-sm shadow-md transition-all duration-200 ease-in-out;
+  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover: text-white border-none py-2.5   cursor-pointer text-base shadow-md transition-all duration-200 ease-in-out;
 }
 #toc-toggle-button:hover {
   @apply transform -translate-y-px;
