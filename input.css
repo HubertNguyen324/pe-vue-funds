@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
+    @apply px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
+    @apply px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply py-2 px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
+    @apply px-4 mr-1 inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
   }
 
   .default-btn:hover {
@@ -65,7 +65,7 @@
   }
 
   .default-selectbox {
-    @apply mt-1 block w-full rounded-md border-stone-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm;
+    @apply mt-1 block w-full rounded-md border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm;
   }
 
   .default-checkbox {
@@ -81,7 +81,7 @@
   }
 
   .item-list-delete-btn {
-    @apply py-2 px-4 inline-flex justify-center rounded-md border border-transparent bg-stone-400 text-sm font-medium text-white shadow-sm;
+    @apply px-4 inline-flex justify-center rounded-md border border-transparent bg-stone-400 text-sm font-medium text-white shadow-sm;
   }
 
   .item-list-delete-btn:hover {
@@ -108,7 +108,7 @@
         in their HTML/Vue templates if larger padding is needed on wider screens.
       - Removed border-b as divide-y on the parent ul handles this.
     */
-    @apply px-4 py-2 sm:px-6 border rounded-md text-stone-700 bg-white transition-colors duration-200 ease-in-out;
+    @apply px-4 sm:px-6 border rounded-md text-stone-700 bg-white transition-colors duration-200 ease-in-out;
   }
 
   .styled-item-list li:hover {
