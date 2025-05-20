@@ -3,157 +3,157 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: 'Inter', sans-serif; /* Ensure 'Inter' is defined in tailwind.config.js or imported */
-    overflow-x: hidden;
-  }
+ body {
+ font-family: 'Inter', sans-serif; /* Ensure 'Inter' is defined in tailwind.config.js or imported */
+ overflow-x: hidden;
+ }
 
-  html {
-    scroll-behavior: smooth;
-  }
+ html {
+ scroll-behavior: smooth;
+ }
 }
 
 
 @layer components {
-  /* UI components Styling */
+ /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center  border border-transparent   ;
+    @apply inline-flex justify-center border border-transparent ;
   }
 
   .primary-btn:hover {
     @apply ;
   }
 
-  .primary-btn:focus {
-    @apply ring-2 ring-blue-500;
-  }
+ .primary-btn:focus {
+ @apply ring-2 ring-blue-500;
+ }
 
-  .cancel-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-500    ;
-  }
+ .cancel-btn {
+ @apply inline-flex justify-center border border-transparent bg-stone-500 ;
+ }
 
-  .cancel-btn:hover {
-    @apply bg-stone-600;
-  }
+ .cancel-btn:hover {
+ @apply bg-stone-600;
+ }
 
-  .cancel-btn:focus {
-    @apply ring-2 ring-stone-500;
-  }
+ .cancel-btn:focus {
+ @apply ring-2 ring-stone-500;
+ }
 
-  .default-btn {
-    @apply inline-flex justify-center  border border-transparent bg-sky-600    ;
-  }
+ .default-btn {
+ @apply inline-flex justify-center border border-transparent bg-sky-600 ;
+ }
 
-  .default-btn:hover {
-    @apply bg-sky-700;
-  }
+ .default-btn:hover {
+ @apply bg-sky-700;
+ }
 
-  .default-btn:focus {
-    @apply ring-2 ring-sky-500;
-  }
+ .default-btn:focus {
+ @apply ring-2 ring-sky-500;
+ }
 
-  .default-btn:disabled {
-    @apply opacity-50 cursor-not-allowed bg-stone-400;
-  }
-  
-  .default-label {
-    @apply block   text-stone-700;
-  }
+ .default-btn:disabled {
+ @apply opacity-50 cursor-not-allowed bg-stone-400;
+ }
+ 
+ .default-label {
+ @apply block text-stone-700;
+ }
 
-  .default-textbox {
-    @apply mt-1 block w-full  border-stone-300  focus:border-sky-500 focus:ring-sky-500 sm:;
-  }
+ .default-textbox {
+ @apply mt-1 block w-full border-stone-300 focus:border-sky-500 focus:ring-sky-500 sm:;
+ }
 
-  .default-selectbox {
-    @apply mt-1 block w-full  border-stone-300 px-3  focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:;
-  }
+ .default-selectbox {
+ @apply mt-1 block w-full border-stone-300 px-3 focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:;
+ }
 
-  .default-checkbox {
-    @apply mt-3  border-stone-300 text-sky-600 focus:ring-sky-500;
-  }
+ .default-checkbox {
+ @apply mt-3 border-stone-300 text-sky-600 focus:ring-sky-500;
+ }
 
-  .default-radio {
-    @apply mt-3 -lg border-stone-300 text-sky-600 focus:ring-sky-500;
-  }
+ .default-radio {
+ @apply mt-3 -lg border-stone-300 text-sky-600 focus:ring-sky-500;
+ }
 
-  .item-list-checkbox{
-    @apply mr-4  border-stone-300 text-sky-600 focus:ring-sky-500;
-  }
+ .item-list-checkbox{
+ @apply mr-4 border-stone-300 text-sky-600 focus:ring-sky-500;
+ }
 
-  .item-list-delete-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-400    ;
-  }
+ .item-list-delete-btn {
+ @apply inline-flex justify-center border border-transparent bg-stone-400 ;
+ }
 
-  .item-list-delete-btn:hover {
-    @apply bg-stone-600;
-  }
+ .item-list-delete-btn:hover {
+ @apply bg-stone-600;
+ }
 
-  .item-list-delete-btn:focus {
-    @apply ring-2 ring-stone-200;
-  }
+ .item-list-delete-btn:focus {
+ @apply ring-2 ring-stone-200;
+ }
 
-  /* Styled Item List - Themed for Easy Reading Experience */
-  .styled-item-list {
-    /*
-      - divide-y and divide-stone-200 for borders between items.
-      - the existing border, , overflow-hidden, mb-4.
-      - list-none and p-0 are good defaults for a custom styled list.
-    */
-    @apply list-none p-0;
-  }
-  .styled-item-list li {
-    /*
-      - Adjusted padding to  py-3 to match common base padding.
-        Users can add responsive padding like sm:px-6 directly to <li> elements
-        in their HTML/Vue templates if larger padding is needed on wider screens.
-      - Removed border-b as divide-y on the parent ul handles this.
-    */
-    @apply  sm:px-6 border  text-stone-700 bg-white transition-colors duration-200 ease-in-out;
-  }
+ /* Styled Item List - Themed for Easy Reading Experience */
+ .styled-item-list {
+ /*
+ - divide-y and divide-stone-200 for borders between items.
+ - the existing border, , overflow-hidden, mb-4.
+ - list-none and p-0 are good defaults for a custom styled list.
+ */
+ @apply list-none p-0;
+ }
+ .styled-item-list li {
+ /*
+ - Adjusted padding to py-3 to match common base padding.
+  Users can add responsive padding like sm:px-6 directly to <li> elements
+  in their HTML/Vue templates if larger padding is needed on wider screens.
+ - Removed border-b as divide-y on the parent ul handles this.
+ */
+ @apply sm:px-6 border text-stone-700 bg-white transition-colors duration-200 ease-in-out;
+ }
 
-  .styled-item-list li:hover {
-    @apply bg-stone-200; /* Softer hover for easy reading */
-  }
-  .styled-item-list li strong {
-    @apply  text-stone-800; /* Slightly darker/stronger text for emphasis */
-  }
+ .styled-item-list li:hover {
+ @apply bg-stone-200; /* Softer hover for easy reading */
+ }
+ .styled-item-list li strong {
+ @apply text-stone-800; /* Slightly darker/stronger text for emphasis */
+ }
 
-  /* --- Strikethrough style for list items --- */
-  .styled-item-list li.strikethrough {
-    @apply line-through text-stone-500; /* Apply line-through and a more muted text color */
-  }
-  .styled-item-list li.strikethrough strong {
-    @apply text-stone-600; /* Adjust strong text color for strikethrough items if needed */
-  }
+ /* --- Strikethrough style for list items --- */
+ .styled-item-list li.strikethrough {
+ @apply line-through text-stone-500; /* Apply line-through and a more muted text color */
+ }
+ .styled-item-list li.strikethrough strong {
+ @apply text-stone-600; /* Adjust strong text color for strikethrough items if needed */
+ }
 
-  /* --- High-priority style for list items --- */
-  .styled-item-list li.highPriority {
-    /* Example: Using a distinct color like a warm red for high priority text */
-    @apply text-orange-400 font-semibold;
-  }
-  .styled-item-list li.highPriority strong {
-    /* Ensure strong text within high-priority items also gets the priority color, or a variation */
-    @apply text-orange-600;
-  }
+ /* --- High-priority style for list items --- */
+ .styled-item-list li.highPriority {
+ /* Example: Using a distinct color like a warm red for high priority text */
+ @apply text-orange-400 font-semibold;
+ }
+ .styled-item-list li.highPriority strong {
+ /* Ensure strong text within high-priority items also gets the priority color, or a variation */
+ @apply text-orange-600;
+ }
 }
 
 #toc-sidebar {
-  @apply fixed top-0 left-0 w-72 h-screen bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-[1002] overflow-y-auto p-6 pt-16;
+ @apply fixed top-0 left-0 w-72 h-screen bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-[1002] overflow-y-auto p-6 pt-16;
 }
 body.toc-open #toc-sidebar {
-  @apply translate-x-0;
+ @apply translate-x-0;
 }
 
 #toc-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-30 z-[1001] opacity-0 invisible transition-all duration-300 ease-in-out;
+ @apply fixed inset-0 bg-black bg-opacity-30 z-[1001] opacity-0 invisible transition-all duration-300 ease-in-out;
 }
 body.toc-open #toc-overlay {
-  @apply opacity-100 visible;
+ @apply opacity-100 visible;
 }
 
 #toc-toggle-button {
-  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover:  border-none py-2.5   cursor-pointer  shadow-md transition-all duration-200 ease-in-out;
+ @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover: border-none py-2.5 cursor-pointer shadow-md transition-all duration-200 ease-in-out;
 }
 #toc-toggle-button:hover {
-  @apply transform -translate-y-px;
+ @apply transform -translate-y-px;
 }
