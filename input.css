@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center rounded border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply   inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply   inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
+    @apply inline-flex justify-center  border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
   }
 
   .default-btn:hover {
@@ -61,11 +61,11 @@
   }
 
   .default-textbox {
-    @apply mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm;
+    @apply mt-1 block w-full  border-stone-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm;
   }
 
   .default-selectbox {
-    @apply mt-1 block w-full rounded-md border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm;
+    @apply mt-1 block w-full  border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm;
   }
 
   .default-checkbox {
@@ -81,7 +81,7 @@
   }
 
   .item-list-delete-btn {
-    @apply  inline-flex justify-center rounded-md border border-transparent bg-stone-400 text-sm font-medium text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-400 text-sm font-medium text-white shadow-sm;
   }
 
   .item-list-delete-btn:hover {
@@ -96,7 +96,7 @@
   .styled-item-list {
     /*
       - divide-y and divide-stone-200 for borders between items.
-      - the existing border, rounded-md, overflow-hidden, mb-4.
+      - the existing border, , overflow-hidden, mb-4.
       - list-none and p-0 are good defaults for a custom styled list.
     */
     @apply list-none p-0;
@@ -108,7 +108,7 @@
         in their HTML/Vue templates if larger padding is needed on wider screens.
       - Removed border-b as divide-y on the parent ul handles this.
     */
-    @apply  sm:px-6 border rounded-md text-stone-700 bg-white transition-colors duration-200 ease-in-out;
+    @apply  sm:px-6 border  text-stone-700 bg-white transition-colors duration-200 ease-in-out;
   }
 
   .styled-item-list li:hover {
@@ -152,7 +152,7 @@ body.toc-open #toc-overlay {
 }
 
 #toc-toggle-button {
-  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover:bg-blue-600 text-white border-none py-2.5  rounded-md cursor-pointer text-sm shadow-md transition-all duration-200 ease-in-out;
+  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover:bg-blue-600 text-white border-none py-2.5   cursor-pointer text-sm shadow-md transition-all duration-200 ease-in-out;
 }
 #toc-toggle-button:hover {
   @apply transform -translate-y-px;
