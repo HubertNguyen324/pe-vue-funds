@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center rounded border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center  border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
   }
 
   .primary-btn:hover {
@@ -69,15 +69,15 @@
   }
 
   .default-checkbox {
-    @apply mt-3 rounded border-stone-300 text-sky-600 focus:ring-sky-500;
+    @apply mt-3  border-stone-300 text-sky-600 focus:ring-sky-500;
   }
 
   .default-radio {
-    @apply mt-3 rounded-lg border-stone-300 text-sky-600 focus:ring-sky-500;
+    @apply mt-3 -lg border-stone-300 text-sky-600 focus:ring-sky-500;
   }
 
   .item-list-checkbox{
-    @apply mr-4 rounded border-stone-300 text-sky-600 focus:ring-sky-500;
+    @apply mr-4  border-stone-300 text-sky-600 focus:ring-sky-500;
   }
 
   .item-list-delete-btn {
