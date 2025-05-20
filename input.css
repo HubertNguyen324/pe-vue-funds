@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
  body {
@@ -21,7 +19,7 @@
   }
 
   .primary-btn:hover {
-    @apply ;
+    @apply bg-blue-500;
   }
 
   .primary-btn:focus {
@@ -29,7 +27,7 @@
   }
 
   .cancel-btn {
-  @apply inline-flex justify-center border border-transparent bg-stone-500;
+    @apply inline-flex justify-center border border-transparent bg-stone-500;
   }
 
   .cancel-btn:hover {
@@ -61,11 +59,11 @@
   }
 
   .default-textbox {
-    @apply mt-1 block w-full border-stone-300 focus:border-sky-500 focus:ring-sky-500 sm:;
+    @apply mt-1 block w-full border-stone-300 focus:border-sky-500 focus:ring-sky-500;
   }
 
   .default-selectbox {
-    @apply mt-1 block w-full border-stone-300 px-3 focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:;
+    @apply mt-1 block w-full border-stone-300 px-3 focus:border-sky-500 focus:outline-none focus:ring-sky-500 ;
   }
 
   .default-checkbox {
@@ -73,7 +71,7 @@
   }
 
   .default-radio {
-    @apply mt-3 -lg border-stone-300 text-sky-600 focus:ring-sky-500;
+    @apply mt-3 rounded-full border-stone-300 text-sky-600 focus:ring-sky-500;
   }
 
   .item-list-checkbox{
@@ -93,7 +91,7 @@
   }
 
   /* Styled Item List - Themed for Easy Reading Experience */
-    .styled-item-list {
+  .styled-item-list {
     /*
     - divide-y and divide-stone-200 for borders between items.
     - the existing border, , overflow-hidden, mb-4.
@@ -101,14 +99,15 @@
     */
     @apply list-none p-0;
   }
-    .styled-item-list li {
+  
+  .styled-item-list li {
     /*
     - Adjusted padding to py-3 to match common base padding.
-    Users can add responsive padding like sm:px-6 directly to <li> elements
+    Users can add responsive padding like px-6 directly to <li> elements
     in their HTML/Vue templates if larger padding is needed on wider screens.
     - Removed border-b as divide-y on the parent ul handles this.
     */
-    @apply sm:px-6 border text-stone-700 bg-white transition-colors duration-200 ease-in-out;
+    @apply px-6 border text-stone-700 bg-white transition-colors duration-200 ease-in-out;
   }
 
   .styled-item-list li:hover {
@@ -145,14 +144,14 @@ body.toc-open #toc-sidebar {
 }
 
 #toc-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-30 z-[1001] opacity-0 invisible transition-all duration-300 ease-in-out;
+  @apply fixed inset-0 bg-black/30 z-[1001] opacity-0 invisible transition-all duration-300 ease-in-out;
 }
 body.toc-open #toc-overlay {
   @apply opacity-100 visible;
 }
 
 #toc-toggle-button {
-  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover: border-none py-2.5 cursor-pointer shadow-md transition-all duration-200 ease-in-out;
+  @apply fixed top-4 left-4 z-[1003] bg-blue-500 border-none py-2.5 cursor-pointer shadow-md transition-all duration-200 ease-in-out;
 }
 #toc-toggle-button:hover {
   @apply transform -translate-y-px;
