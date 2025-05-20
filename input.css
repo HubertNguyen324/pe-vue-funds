@@ -21,7 +21,7 @@
   }
 
   .primary-btn:hover {
-    @apply bg-blue-700;
+    @apply ;
   }
 
   .primary-btn:focus {
