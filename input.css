@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply  mr-1 inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center rounded-md border border-transparent bg-blue-600 text-sm font-medium text-white shadow-sm;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply  mr-1 inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center rounded-md border border-transparent bg-stone-500 text-sm font-medium text-white shadow-sm;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply  mr-1 inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
+    @apply   inline-flex justify-center rounded-md border border-transparent bg-sky-600 text-sm font-medium text-white shadow-sm;
   }
 
   .default-btn:hover {
