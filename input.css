@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center  border border-transparent   shadow-sm;
+    @apply   inline-flex justify-center  border border-transparent   ;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-500    shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-500    ;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply inline-flex justify-center  border border-transparent bg-sky-600    shadow-sm;
+    @apply inline-flex justify-center  border border-transparent bg-sky-600    ;
   }
 
   .default-btn:hover {
@@ -61,11 +61,11 @@
   }
 
   .default-textbox {
-    @apply mt-1 block w-full  border-stone-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:;
+    @apply mt-1 block w-full  border-stone-300  focus:border-sky-500 focus:ring-sky-500 sm:;
   }
 
   .default-selectbox {
-    @apply mt-1 block w-full  border-stone-300 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:;
+    @apply mt-1 block w-full  border-stone-300 px-3  focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:;
   }
 
   .default-checkbox {
@@ -81,7 +81,7 @@
   }
 
   .item-list-delete-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-400    shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-400    ;
   }
 
   .item-list-delete-btn:hover {
