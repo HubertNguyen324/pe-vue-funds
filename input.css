@@ -17,7 +17,7 @@
 @layer components {
   /* UI components Styling */
   .primary-btn {
-    @apply   inline-flex justify-center  border border-transparent  text-white shadow-sm;
+    @apply   inline-flex justify-center  border border-transparent   shadow-sm;
   }
 
   .primary-btn:hover {
@@ -29,7 +29,7 @@
   }
 
   .cancel-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-500   text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-500    shadow-sm;
   }
 
   .cancel-btn:hover {
@@ -41,7 +41,7 @@
   }
 
   .default-btn {
-    @apply inline-flex justify-center  border border-transparent bg-sky-600   text-white shadow-sm;
+    @apply inline-flex justify-center  border border-transparent bg-sky-600    shadow-sm;
   }
 
   .default-btn:hover {
@@ -81,7 +81,7 @@
   }
 
   .item-list-delete-btn {
-    @apply  inline-flex justify-center  border border-transparent bg-stone-400   text-white shadow-sm;
+    @apply  inline-flex justify-center  border border-transparent bg-stone-400    shadow-sm;
   }
 
   .item-list-delete-btn:hover {
@@ -152,7 +152,7 @@ body.toc-open #toc-overlay {
 }
 
 #toc-toggle-button {
-  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover: text-white border-none py-2.5   cursor-pointer  shadow-md transition-all duration-200 ease-in-out;
+  @apply fixed top-4 left-4 z-[1003] bg-blue-500 hover:  border-none py-2.5   cursor-pointer  shadow-md transition-all duration-200 ease-in-out;
 }
 #toc-toggle-button:hover {
   @apply transform -translate-y-px;
