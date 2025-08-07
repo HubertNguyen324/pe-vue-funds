@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build:css": "tailwindcss -i ./input.css -o ./src/css/styles.css",
-    "watch:css": "tailwindcss -i ./input.css -o ./src/css/styles.css --watch"
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./src/css/styles.css",
+    "watch:css": "tailwindcss -i ./src/css/input.css -o ./src/css/styles.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",

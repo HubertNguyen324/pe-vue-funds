@@ -4,7 +4,7 @@ In this lesson, we'll dive into Vue's templating syntax and learn how to run Jav
 
 <div class="vue-interactive-solution" data-solution-id="hello" data-vue-app-script="hello.js">
     <h3>A Simple Hello World</h3>
-    <div class="solution-container" id="vue-app-hello"></div>
+    <div class="solution-container"></div>
 </div>
 
 ## Mustache Syntax `{{ }}`
